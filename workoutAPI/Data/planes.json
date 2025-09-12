@@ -1,0 +1,17 @@
+[
+  {
+    "code": "sagittal",
+    "name": "Sagittal",
+    "description": "Divides the body into left and right halves. Forward/backward movements such as flexion and extension."
+  },
+  {
+    "code": "frontal",
+    "name": "Frontal",
+    "description": "Divides the body into front and back halves. Side-to-side movements such as abduction and adduction."
+  },
+  {
+    "code": "transverse",
+    "name": "Transverse",
+    "description": "Divides the body into upper and lower halves. Rotational movements around the longitudinal axis."
+  }
+  ]

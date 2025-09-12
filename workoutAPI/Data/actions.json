@@ -1,0 +1,40 @@
+[
+  { "joint": "hip", "code": "flexion", "name": "Flexion" },
+  { "joint": "hip", "code": "extension", "name": "Extension" },
+  { "joint": "hip", "code": "abduction", "name": "Abduction" },
+  { "joint": "hip", "code": "adduction", "name": "Adduction" },
+  { "joint": "hip", "code": "internalRotation", "name": "Internal rotation" },
+  { "joint": "hip", "code": "externalRotation", "name": "External rotation" },
+
+  { "joint": "knee", "code": "flexion", "name": "Flexion" },
+  { "joint": "knee", "code": "extension", "name": "Extension" },
+  { "joint": "knee", "code": "internalRotation", "name": "Internal rotation (when flexed)" },
+  { "joint": "knee", "code": "externalRotation", "name": "External rotation (when flexed)" },
+
+  { "joint": "shoulder", "code": "flexion", "name": "Flexion" },
+  { "joint": "shoulder", "code": "extension", "name": "Extension" },
+  { "joint": "shoulder", "code": "abduction", "name": "Abduction" },
+  { "joint": "shoulder", "code": "adduction", "name": "Adduction" },
+  { "joint": "shoulder", "code": "horizontalAbduction", "name": "Horizontal abduction" },
+  { "joint": "shoulder", "code": "horizontalAdduction", "name": "Horizontal adduction" },
+  { "joint": "shoulder", "code": "internalRotation", "name": "Internal rotation" },
+  { "joint": "shoulder", "code": "externalRotation", "name": "External rotation" },
+
+  { "joint": "elbow", "code": "flexion", "name": "Flexion" },
+  { "joint": "elbow", "code": "extension", "name": "Extension" },
+
+  { "joint": "ankle", "code": "dorsiflexion", "name": "Dorsiflexion" },
+  { "joint": "ankle", "code": "plantarflexion", "name": "Plantarflexion" },
+  { "joint": "ankle", "code": "inversion", "name": "Inversion" },
+  { "joint": "ankle", "code": "eversion", "name": "Eversion" },
+
+  { "joint": "spine", "code": "flexion", "name": "Flexion" },
+  { "joint": "spine", "code": "extension", "name": "Extension" },
+  { "joint": "spine", "code": "lateralFlexion", "name": "Lateral flexion" },
+  { "joint": "spine", "code": "rotation", "name": "Rotation" },
+
+  { "joint": "lumbopelvic", "code": "posteriorTilt", "name": "Posterior tilt" },
+  { "joint": "lumbopelvic", "code": "anteriorTilt", "name": "Anterior tilt" },
+  { "joint": "lumbopelvic", "code": "decreaseLordosis", "name": "Decrease lumbar lordosis" },
+  { "joint": "lumbopelvic", "code": "increaseLordosis", "name": "Increase lumbar lordosis" }
+]

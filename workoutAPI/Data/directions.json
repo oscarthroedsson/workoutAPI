@@ -1,0 +1,27 @@
+[
+  { "code": "medial", "name": "Medial", "description": "Towards the midline of the body" },
+  { "code": "lateral", "name": "Lateral", "description": "Away from the midline of the body" },
+  { "code": "contralateral", "name": "Contralateral", "description": "On the opposite side of the body" },
+  { "code": "ipsilateral", "name": "Ipsilateral", "description": "On the same side of the body" },
+
+  { "code": "anterior", "name": "Anterior", "description": "Toward the front of the body" },
+  { "code": "posterior", "name": "Posterior", "description": "Toward the back of the body" },
+  { "code": "superior", "name": "Superior", "description": "Above or higher in position" },
+  { "code": "inferior", "name": "Inferior", "description": "Below or lower in position" },
+
+  { "code": "dexter", "name": "Dexter", "description": "Right side of the body" },
+  { "code": "sinister", "name": "Sinister", "description": "Left side of the body" },
+
+  { "code": "cranial", "name": "Cranial", "description": "Towards the head (within trunk/torso)" },
+  { "code": "caudal", "name": "Caudal", "description": "Towards the tail or feet (within trunk/torso)" },
+  { "code": "ventral", "name": "Ventral", "description": "Toward the belly/front (within trunk/torso)" },
+  { "code": "dorsal", "name": "Dorsal", "description": "Toward the back/spine (within trunk/torso)" },
+
+  { "code": "proximal", "name": "Proximal", "description": "Closer to the trunk or point of origin (within limbs)" },
+  { "code": "distal", "name": "Distal", "description": "Farther from the trunk or point of origin (within limbs)" },
+  { "code": "palmar", "name": "Palmar", "description": "Pertaining to the palm of the hand" },
+  { "code": "plantar", "name": "Plantar", "description": "Pertaining to the sole of the foot" },
+  { "code": "ulnar", "name": "Ulnar", "description": "Toward the ulna (inner side of forearm)" },
+  { "code": "radial", "name": "Radial", "description": "Toward the radius (outer side of forearm)" },
+  { "code": "dorsalExtremity", "name": "Dorsal (extremities)", "description": "Back of hand or top of foot" }
+]

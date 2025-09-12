@@ -1,0 +1,12 @@
+
+[
+  { "code": "hip", "name": "Hip joint", "latinName": "Art. coxa" },
+  { "code": "knee", "name": "Knee joint", "latinName": "Art. genu" },
+  { "code": "shoulder", "name": "Shoulder joint", "latinName": "Art. glenohumeralis" },
+  { "code": "elbow", "name": "Elbow joint", "latinName": "Art. cubiti" },
+  { "code": "ankle", "name": "Ankle joint", "latinName": "Art. talocruralis" },
+  { "code": "spine", "name": "Spinal column", "latinName": "Columna vertebralis" },
+  { "code": "lumbopelvic", "name": "Lumbopelvic region", "latinName": "Lumbopelvic complex" }
+]
+
+
