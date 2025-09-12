@@ -1,0 +1,41 @@
+[
+  {
+    "code": "trapeziusUpper",
+    "name": "Trapezius (upper fibers)",
+    "latinName": "Musculus trapezius (pars descendens)",
+    "group": "traps",
+    "actions": [
+      { "joint": "scapula", "action": "elevation", "role": "prime", "planes": ["frontal"] },
+      { "joint": "scapula", "action": "upwardRotation", "role": "synergist", "planes": ["frontal"] },
+      { "joint": "spine", "action": "extension", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["shoulderGirdle", "spine"],
+    "directions": ["posterior", "superior"]
+  },
+  {
+    "code": "trapeziusMiddle",
+    "name": "Trapezius (middle fibers)",
+    "latinName": "Musculus trapezius (pars transversa)",
+    "group": "traps",
+    "actions": [
+      { "joint": "scapula", "action": "retraction", "role": "prime", "planes": ["frontal"] }
+    ],
+    "planes": ["frontal"],
+    "joints": ["shoulderGirdle"],
+    "directions": ["posterior"]
+  },
+  {
+    "code": "trapeziusLower",
+    "name": "Trapezius (lower fibers)",
+    "latinName": "Musculus trapezius (pars ascendens)",
+    "group": "traps",
+    "actions": [
+      { "joint": "scapula", "action": "depression", "role": "prime", "planes": ["frontal"] },
+      { "joint": "scapula", "action": "upwardRotation", "role": "synergist", "planes": ["frontal"] }
+    ],
+    "planes": ["frontal"],
+    "joints": ["shoulderGirdle"],
+    "directions": ["posterior", "inferior"]
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "code": "abdominals",
+    "name": "Abdominals",
+    "latinName": "Abdominales",
+    "muscles": ["rectusAbdominis", "externalOblique", "internalOblique", "transversusAbdominis"],
+    "actions": ["flexion", "rotation", "lateralFlexion"],
+    "directions": ["anterior"],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["spine", "lumbopelvic"]
+  },
+  {
+    "code": "abductors",
+    "name": "Abductors",
+    "latinName": "Abductores",
+    "muscles": ["gluteusMedius", "gluteusMinimus", "tensorFasciaeLatae"],
+    "actions": ["abduction", "internalRotation"],
+    "directions": ["lateral"],
+    "planes": ["frontal", "transverse"],
+    "joints": ["hip"]
+  },
+  {
+    "code": "adductors",
+    "name": "Adductors",
+    "latinName": "Adductores",
+    "muscles": ["adductorLongus", "adductorBrevis", "adductorMagnus", "pectineus", "gracilis"],
+    "actions": ["adduction", "flexion", "extension"],
+    "directions": ["medial"],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["hip"]
+  },
+  {
+    "code": "biceps",
+    "name": "Biceps",
+    "latinName": "Musculi bicipites brachii",
+    "muscles": ["bicepsBrachiiLongHead", "bicepsBrachiiShortHead"],
+    "actions": ["flexion", "supination"],
+    "directions": ["anterior"],
+    "planes": ["sagittal", "transverse"],
+    "joints": ["elbow", "shoulder"]
+  },
+  {
+    "code": "calves",
+    "name": "Calves",
+    "latinName": "Triceps surae",
+    "muscles": ["gastrocnemiusMedialHead", "gastrocnemiusLateralHead", "soleus"],
+    "actions": ["plantarflexion"],
+    "directions": ["posterior"],
+    "planes": ["sagittal"],
+    "joints": ["ankle", "knee"]
+  },
+  {
+    "code": "chest",
+    "name": "Chest",
+    "latinName": "Pectorales",
+    "muscles": ["pectoralisMajorClavicular", "pectoralisMajorSternal", "pectoralisMinor"],
+    "actions": ["flexion", "adduction", "horizontalAdduction", "internalRotation"],
+    "directions": ["anterior"],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["shoulder"]
+  },
+  {
+    "code": "forearms",
+    "name": "Forearms",
+    "latinName": "Antebrachium",
+    "muscles": ["brachioradialis", "flexorCarpiRadialis", "flexorCarpiUlnaris", "palmarisLongus", "pronatorTeres", "extensorCarpiRadialisLongus", "extensorCarpiRadialisBrevis", "extensorCarpiUlnaris", "supinator"],
+    "actions": ["flexion", "extension", "pronation", "supination"],
+    "directions": ["anterior", "posterior", "medial", "lateral"],
+    "planes": ["sagittal", "transverse"],
+    "joints": ["elbow", "wrist"]
+  },
+  {
+    "code": "glutes",
+    "name": "Glutes",
+    "latinName": "Glutei",
+    "muscles": ["gluteusMaximus", "gluteusMedius", "gluteusMinimus"],
+    "actions": ["extension", "abduction", "externalRotation"],
+    "directions": ["posterior", "lateral"],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["hip"]
+  },
+  {
+    "code": "hamstrings",
+    "name": "Hamstrings",
+    "latinName": "Ischiocrurales",
+    "muscles": ["bicepsFemorisLongHead", "bicepsFemorisShortHead", "semitendinosus", "semimembranosus"],
+    "actions": ["flexion", "extension", "internalRotation", "externalRotation"],
+    "directions": ["posterior"],
+    "planes": ["sagittal", "transverse"],
+    "joints": ["hip", "knee"]
+  },
+  {
+    "code": "lats",
+    "name": "Lats",
+    "latinName": "Latissimus dorsi",
+    "muscles": ["latissimusDorsi"],
+    "actions": ["extension", "adduction", "internalRotation"],
+    "directions": ["posterior", "lateral"],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["shoulder"]
+  },
+  {
+    "code": "lowerBack",
+    "name": "Lower back",
+    "latinName": "Erector spinae (pars lumbalis)",
+    "muscles": ["iliocostalisLumborum", "longissimusThoracis", "spinalisThoracis"],
+    "actions": ["extension"],
+    "directions": ["posterior"],
+    "planes": ["sagittal"],
+    "joints": ["spine"]
+  },
+  {
+    "code": "middleBack",
+    "name": "Middle back",
+    "latinName": "Rhomboidei / Trapezius pars media",
+    "muscles": ["trapeziusMiddle", "rhomboideusMajor", "rhomboideusMinor"],
+    "actions": ["retraction", "elevation", "downwardRotation"],
+    "directions": ["posterior"],
+    "planes": ["frontal"],
+    "joints": ["shoulderGirdle"]
+  },
+  {
+    "code": "neck",
+    "name": "Neck",
+    "latinName": "Colli",
+    "muscles": ["sternocleidomastoid", "scalenesAnterior", "scalenesMiddle", "scalenesPosterior"],
+    "actions": ["flexion", "extension", "rotation", "lateralFlexion"],
+    "directions": ["anterior", "posterior", "lateral"],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["spine"]
+  },
+  {
+    "code": "quadriceps",
+    "name": "Quadriceps",
+    "latinName": "Quadriceps femoris",
+    "muscles": ["rectusFemoris", "vastusLateralis", "vastusMedialis", "vastusIntermedius"],
+    "actions": ["extension", "flexion"],
+    "directions": ["anterior"],
+    "planes": ["sagittal"],
+    "joints": ["hip", "knee"]
+  },
+  {
+    "code": "traps",
+    "name": "Trapezius",
+    "latinName": "Trapezius",
+    "muscles": ["trapeziusUpper", "trapeziusMiddle", "trapeziusLower"],
+    "actions": ["elevation", "depression", "retraction", "upwardRotation"],
+    "directions": ["posterior"],
+    "planes": ["frontal", "transverse"],
+    "joints": ["shoulderGirdle", "spine"]
+  },
+  {
+    "code": "triceps",
+    "name": "Triceps",
+    "latinName": "Triceps brachii",
+    "muscles": ["tricepsBrachiiLongHead", "tricepsBrachiiLateralHead", "tricepsBrachiiMedialHead"],
+    "actions": ["extension"],
+    "directions": ["posterior"],
+    "planes": ["sagittal"],
+    "joints": ["elbow", "shoulder"]
+  }
+]

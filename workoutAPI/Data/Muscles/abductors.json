@@ -1,0 +1,42 @@
+[
+  {
+    "code": "gluteusMedius",
+    "name": "Gluteus medius",
+    "latinName": "Musculus gluteus medius",
+    "group": "abductors",
+    "actions": [
+      { "joint": "hip", "action": "abduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] }
+    ],
+    "planes": ["frontal", "transverse"],
+    "joints": ["hip"],
+    "directions": ["lateral"]
+  },
+  {
+    "code": "gluteusMinimus",
+    "name": "Gluteus minimus",
+    "latinName": "Musculus gluteus minimus",
+    "group": "abductors",
+    "actions": [
+      { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] },
+      { "joint": "hip", "action": "internalRotation", "role": "prime", "planes": ["transverse"] }
+    ],
+    "planes": ["frontal", "transverse"],
+    "joints": ["hip"],
+    "directions": ["lateral"]
+  },
+  {
+    "code": "tensorFasciaeLatae",
+    "name": "Tensor fasciae latae",
+    "latinName": "Musculus tensor fasciae latae",
+    "group": "abductors",
+    "actions": [
+      { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] },
+      { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] },
+      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "transverse", "sagittal"],
+    "joints": ["hip"],
+    "directions": ["lateral", "anterior"]
+  }
+]

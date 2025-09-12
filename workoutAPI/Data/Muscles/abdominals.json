@@ -1,0 +1,52 @@
+[
+  {
+    "code": "rectusAbdominis",
+    "name": "Rectus abdominis",
+    "latinName": "Musculus rectus abdominis",
+    "group": "abdominals",
+    "actions": [
+      { "joint": "spine", "action": "flexion", "role": "prime", "planes": ["sagittal"] }
+    ],
+    "planes": ["sagittal"],
+    "joints": ["spine", "lumbopelvic"],
+    "directions": ["anterior"]
+  },
+  {
+    "code": "externalOblique",
+    "name": "External oblique",
+    "latinName": "Musculus obliquus externus abdominis",
+    "group": "abdominals",
+    "actions": [
+      { "joint": "spine", "action": "rotation", "role": "prime", "planes": ["transverse"] },
+      { "joint": "spine", "action": "lateralFlexion", "role": "synergist", "planes": ["frontal"] }
+    ],
+    "planes": ["frontal", "transverse"],
+    "joints": ["spine", "lumbopelvic"],
+    "directions": ["anterior", "lateral"]
+  },
+  {
+    "code": "internalOblique",
+    "name": "Internal oblique",
+    "latinName": "Musculus obliquus internus abdominis",
+    "group": "abdominals",
+    "actions": [
+      { "joint": "spine", "action": "rotation", "role": "synergist", "planes": ["transverse"] },
+      { "joint": "spine", "action": "lateralFlexion", "role": "synergist", "planes": ["frontal"] }
+    ],
+    "planes": ["frontal", "transverse"],
+    "joints": ["spine", "lumbopelvic"],
+    "directions": ["anterior", "lateral"]
+  },
+  {
+    "code": "transversusAbdominis",
+    "name": "Transversus abdominis",
+    "latinName": "Musculus transversus abdominis",
+    "group": "abdominals",
+    "actions": [
+      { "joint": "spine", "action": "stabilization", "role": "prime", "planes": ["transverse"] }
+    ],
+    "planes": ["transverse"],
+    "joints": ["spine", "lumbopelvic"],
+    "directions": ["anterior"]
+  }
+]

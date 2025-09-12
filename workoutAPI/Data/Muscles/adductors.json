@@ -1,0 +1,68 @@
+[
+  {
+    "code": "adductorLongus",
+    "name": "Adductor longus",
+    "latinName": "Musculus adductor longus",
+    "group": "adductors",
+    "actions": [
+      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["hip"],
+    "directions": ["medial"]
+  },
+  {
+    "code": "adductorBrevis",
+    "name": "Adductor brevis",
+    "latinName": "Musculus adductor brevis",
+    "group": "adductors",
+    "actions": [
+      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["hip"],
+    "directions": ["medial"]
+  },
+  {
+    "code": "adductorMagnus",
+    "name": "Adductor magnus",
+    "latinName": "Musculus adductor magnus",
+    "group": "adductors",
+    "actions": [
+      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "hip", "action": "extension", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["hip"],
+    "directions": ["medial", "posterior"]
+  },
+  {
+    "code": "pectineus",
+    "name": "Pectineus",
+    "latinName": "Musculus pectineus",
+    "group": "adductors",
+    "actions": [
+      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["hip"],
+    "directions": ["medial", "anterior"]
+  },
+  {
+    "code": "gracilis",
+    "name": "Gracilis",
+    "latinName": "Musculus gracilis",
+    "group": "adductors",
+    "actions": [
+      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] },
+      { "joint": "knee", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["frontal", "sagittal"],
+    "joints": ["hip", "knee"],
+    "directions": ["medial"]
+  }
+]

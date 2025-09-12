@@ -1,0 +1,30 @@
+[
+  {
+    "code": "bicepsBrachiiLongHead",
+    "name": "Biceps brachii (long head)",
+    "latinName": "Musculus biceps brachii caput longum",
+    "group": "biceps",
+    "actions": [
+      { "joint": "elbow", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
+      { "joint": "forearm", "action": "supination", "role": "prime", "planes": ["transverse"] },
+      { "joint": "shoulder", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["sagittal", "transverse"],
+    "joints": ["elbow", "shoulder", "forearm"],
+    "directions": ["anterior"]
+  },
+  {
+    "code": "bicepsBrachiiShortHead",
+    "name": "Biceps brachii (short head)",
+    "latinName": "Musculus biceps brachii caput breve",
+    "group": "biceps",
+    "actions": [
+      { "joint": "elbow", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
+      { "joint": "forearm", "action": "supination", "role": "prime", "planes": ["transverse"] },
+      { "joint": "shoulder", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+    ],
+    "planes": ["sagittal", "transverse"],
+    "joints": ["elbow", "shoulder", "forearm"],
+    "directions": ["anterior"]
+  }
+]

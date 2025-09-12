@@ -1,0 +1,16 @@
+[
+  {
+    "code": "latissimusDorsi",
+    "name": "Latissimus dorsi",
+    "latinName": "Musculus latissimus dorsi",
+    "group": "lats",
+    "actions": [
+      { "joint": "shoulder", "action": "extension", "role": "prime", "planes": ["sagittal"] },
+      { "joint": "shoulder", "action": "adduction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "shoulder", "action": "internalRotation", "role": "prime", "planes": ["transverse"] }
+    ],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["shoulder"],
+    "directions": ["posterior", "lateral"]
+  }
+]
