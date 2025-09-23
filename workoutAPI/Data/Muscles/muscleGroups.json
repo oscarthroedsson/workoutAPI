@@ -32,7 +32,7 @@
   {
     "code": "biceps",
     "name": "Biceps",
-    "latinName": "Musculi bicipites brachii",
+    "latinName": "bicep brachii",
     "muscles": ["bicepsBrachiiLongHead", "bicepsBrachiiShortHead"],
     "actions": ["flexion", "supination"],
     "directions": ["anterior"],
@@ -72,7 +72,7 @@
   {
     "code": "glutes",
     "name": "Glutes",
-    "latinName": "Glutei",
+    "latinName": "Glutes",
     "muscles": ["gluteusMaximus", "gluteusMedius", "gluteusMinimus"],
     "actions": ["extension", "abduction", "externalRotation"],
     "directions": ["posterior", "lateral"],
@@ -82,12 +82,22 @@
   {
     "code": "hamstrings",
     "name": "Hamstrings",
-    "latinName": "Ischiocrurales",
+    "latinName": "Hamstrings",
     "muscles": ["bicepsFemorisLongHead", "bicepsFemorisShortHead", "semitendinosus", "semimembranosus"],
     "actions": ["flexion", "extension", "internalRotation", "externalRotation"],
     "directions": ["posterior"],
     "planes": ["sagittal", "transverse"],
     "joints": ["hip", "knee"]
+  },
+  {
+    "code": "neck",
+    "name": "Neck",
+    "latinName": "Colli",
+    "muscles": ["sternocleidomastoid", "scalenesAnterior", "scalenesMiddle", "scalenesPosterior"],
+    "actions": ["flexion", "extension", "rotation", "lateralFlexion"],
+    "directions": ["anterior", "posterior", "lateral"],
+    "planes": ["sagittal", "frontal", "transverse"],
+    "joints": ["spine"]
   },
   {
     "code": "lats",
@@ -118,16 +128,6 @@
     "directions": ["posterior"],
     "planes": ["frontal"],
     "joints": ["shoulderGirdle"]
-  },
-  {
-    "code": "neck",
-    "name": "Neck",
-    "latinName": "Colli",
-    "muscles": ["sternocleidomastoid", "scalenesAnterior", "scalenesMiddle", "scalenesPosterior"],
-    "actions": ["flexion", "extension", "rotation", "lateralFlexion"],
-    "directions": ["anterior", "posterior", "lateral"],
-    "planes": ["sagittal", "frontal", "transverse"],
-    "joints": ["spine"]
   },
   {
     "code": "quadriceps",

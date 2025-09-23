@@ -1,40 +1,31 @@
 [
   {
-    "code": "pectoralisMajorClavicular",
-    "name": "Pectoralis major (clavicular head)",
-    "latinName": "Musculus pectoralis major pars clavicularis",
-    "group": "chest",
+    "code": "pectoralisMajor",
+    "name": "Pectoralis major",
+    "latinName": "Musculus pectoralis major",
+    "region": "chest",
     "actions": [
-      { "joint": "shoulder", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "shoulder", "action": "horizontalAdduction", "role": "prime", "planes": ["transverse"] },
-      { "joint": "shoulder", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] }
+      { "joint": "shoulder", "action": "flexion",  "planes": ["sagittal"] },
+      { "joint": "shoulder", "action": "adduction",  "planes": ["frontal"] },
+      { "joint": "shoulder", "action": "horizontalAdduction",  "planes": ["transverse"] },
+      { "joint": "shoulder", "action": "internalRotation", "planes": ["transverse"] }
     ],
-    "planes": ["sagittal", "transverse"],
+    "planes": ["sagittal", "frontal", "transverse"],--
     "joints": ["shoulder"],
     "directions": ["anterior", "superior"]
   },
   {
-    "code": "pectoralisMajorSternal",
-    "name": "Pectoralis major (sternal head)",
-    "latinName": "Musculus pectoralis major pars sternocostalis",
-    "group": "chest",
-    "actions": [
-      { "joint": "shoulder", "action": "adduction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "shoulder", "action": "horizontalAdduction", "role": "prime", "planes": ["transverse"] },
-      { "joint": "shoulder", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] }
-    ],
-    "planes": ["frontal", "transverse"],
-    "joints": ["shoulder"],
-    "directions": ["anterior"]
-  },
-  {
     "code": "pectoralisMinor",
     "name": "Pectoralis minor",
-    "latinName": "Musculus pectoralis minor",
-    "group": "chest",
+    "latinName": "Pectoralis minor",
+    "region": ["chest"],
     "actions": [
-      { "joint": "scapula", "action": "protraction", "role": "prime", "planes": ["transverse"] },
-      { "joint": "scapula", "action": "depression", "role": "synergist", "planes": ["frontal"] }
+      
+      { "joint": "shoulderGirdle", "action": "protraction","planes": ["sagittal"] },
+      { "joint": "shoulderGirdle", "action": "depression", "planes": ["frontal"] },
+      { "joint": "shoulderGirdle", "action": "anteriorTilt", "planes": ["sagittal"] }
+
+   
     ],
     "planes": ["frontal", "transverse"],
     "joints": ["shoulderGirdle"],

@@ -1,4 +1,5 @@
 [
+  [
   { "joint": "hip", "code": "flexion", "name": "Flexion" },
   { "joint": "hip", "code": "extension", "name": "Extension" },
   { "joint": "hip", "code": "abduction", "name": "Abduction" },
@@ -11,6 +12,8 @@
   { "joint": "knee", "code": "internalRotation", "name": "Internal rotation (when flexed)" },
   { "joint": "knee", "code": "externalRotation", "name": "External rotation (when flexed)" },
 
+  
+  
   { "joint": "shoulder", "code": "flexion", "name": "Flexion" },
   { "joint": "shoulder", "code": "extension", "name": "Extension" },
   { "joint": "shoulder", "code": "abduction", "name": "Abduction" },
@@ -37,4 +40,30 @@
   { "joint": "lumbopelvic", "code": "anteriorTilt", "name": "Anterior tilt" },
   { "joint": "lumbopelvic", "code": "decreaseLordosis", "name": "Decrease lumbar lordosis" },
   { "joint": "lumbopelvic", "code": "increaseLordosis", "name": "Increase lumbar lordosis" }
+],
+[
+  { "code": "flexion", "name": "Flexion", "description": "Bending that decreases the angle between body parts." },
+  { "code": "extension", "name": "Extension", "description": "Straightening that increases the angle between body parts." },
+  { "code": "abduction", "name": "Abduction", "description": "Movement away from the midline of the body." },
+  { "code": "adduction", "name": "Adduction", "description": "Movement toward the midline of the body." },
+  { "code": "internalRotation", "name": "Internal rotation", "description": "Rotation of a limb or body part toward the midline." },
+  { "code": "externalRotation", "name": "External rotation", "description": "Rotation of a limb or body part away from the midline." },
+
+  { "code": "horizontalAbduction", "name": "Horizontal abduction", "description": "Movement of the arm away from the midline in a horizontal plane." },
+  { "code": "horizontalAdduction", "name": "Horizontal adduction", "description": "Movement of the arm toward the midline in a horizontal plane." },
+
+  { "code": "dorsiflexion", "name": "Dorsiflexion", "description": "Movement that brings the top of the foot closer to the shin." },
+  { "code": "plantarflexion", "name": "Plantarflexion", "description": "Movement that points the foot downward, away from the shin." },
+  { "code": "inversion", "name": "Inversion", "description": "Turning the sole of the foot inward." },
+  { "code": "eversion", "name": "Eversion", "description": "Turning the sole of the foot outward." },
+
+  { "code": "lateralFlexion", "name": "Lateral flexion", "description": "Bending of the trunk or neck to the side." },
+  { "code": "rotation", "name": "Rotation", "description": "Turning around the body’s vertical axis." },
+
+  { "code": "posteriorTilt", "name": "Posterior tilt", "description": "Tilting the pelvis backward, flattening the lower back." },
+  { "code": "anteriorTilt", "name": "Anterior tilt", "description": "Tilting the pelvis forward, increasing the lower back curve." },
+  { "code": "decreaseLordosis", "name": "Decrease lumbar lordosis", "description": "Reduction of the natural inward curve of the lower spine." },
+  { "code": "increaseLordosis", "name": "Increase lumbar lordosis", "description": "Increase of the natural inward curve of the lower spine." }
 ]
+]
+

@@ -2,11 +2,12 @@
   {
     "code": "adductorLongus",
     "name": "Adductor longus",
-    "latinName": "Musculus adductor longus",
-    "group": "adductors",
+    "latinName": "Adductor longus",
+    "region": ["adductors"],
     "actions": [
-      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+      { "joint": "hip", "action": "adduction","planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "planes": ["sagittal"] },
+      { "joint": "hip", "action": "externalrotation", "planes": ["transverse"]}
     ],
     "planes": ["frontal", "sagittal"],
     "joints": ["hip"],
@@ -15,11 +16,12 @@
   {
     "code": "adductorBrevis",
     "name": "Adductor brevis",
-    "latinName": "Musculus adductor brevis",
-    "group": "adductors",
+    "latinName": "adductor brevis",
+    "region": ["adductors"],
     "actions": [
-      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+      { "joint": "hip", "action": "adduction", "planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "planes": ["sagittal"] },
+      { "joint": "hip", "action": "externalRotation", "planes": ["sagittal"] }
     ],
     "planes": ["frontal", "sagittal"],
     "joints": ["hip"],
@@ -29,10 +31,11 @@
     "code": "adductorMagnus",
     "name": "Adductor magnus",
     "latinName": "Musculus adductor magnus",
-    "group": "adductors",
+    "region": ["adductors"],
     "actions": [
       { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "hip", "action": "extension", "role": "synergist", "planes": ["sagittal"] }
+      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] },
+      { "joint": "hip", "action": "externalRotation", "role": "synergist", "planes": ["sagittal"] }
     ],
     "planes": ["frontal", "sagittal"],
     "joints": ["hip"],
@@ -41,11 +44,12 @@
   {
     "code": "pectineus",
     "name": "Pectineus",
-    "latinName": "Musculus pectineus",
-    "group": "adductors",
+    "latinName": "Pectineus",
+    "region": ["adductors"],
     "actions": [
-      { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+      { "joint": "hip", "action": "adduction", "planes": ["frontal"] },
+      { "joint": "hip", "action": "flexion", "planes": ["sagittal"] },
+      { "joint": "hip", "action": "externalRotation", "planes": ["transverse"] }
     ],
     "planes": ["frontal", "sagittal"],
     "joints": ["hip"],
@@ -55,7 +59,7 @@
     "code": "gracilis",
     "name": "Gracilis",
     "latinName": "Musculus gracilis",
-    "group": "adductors",
+    "region": ["adductors"],
     "actions": [
       { "joint": "hip", "action": "adduction", "role": "prime", "planes": ["frontal"] },
       { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] },

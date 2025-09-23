@@ -2,8 +2,8 @@
   {
     "code": "brachioradialis",
     "name": "Brachioradialis",
-    "latinName": "Musculus brachioradialis",
-    "group": "forearms",
+    "latinName": "Brachioradialis",
+    "region": ["forearms"],
     "actions": [
       { "joint": "elbow", "action": "flexion", "role": "prime", "planes": ["sagittal"] }
     ],
@@ -14,8 +14,8 @@
   {
     "code": "flexorCarpiRadialis",
     "name": "Flexor carpi radialis",
-    "latinName": "Musculus flexor carpi radialis",
-    "group": "forearms",
+    "latinName": "Flexor carpi radialis",
+    "region": ["forearms"],
     "actions": [
       { "joint": "wrist", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
       { "joint": "wrist", "action": "abduction", "role": "synergist", "planes": ["frontal"] }
@@ -27,11 +27,11 @@
   {
     "code": "flexorCarpiUlnaris",
     "name": "Flexor carpi ulnaris",
-    "latinName": "Musculus flexor carpi ulnaris",
-    "group": "forearms",
+    "latinName": "Flexor carpi ulnaris",
+    "region": ["forearms"],
     "actions": [
-      { "joint": "wrist", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "wrist", "action": "adduction", "role": "synergist", "planes": ["frontal"] }
+      { "joint": "wrist", "action": "flexion", "planes": ["sagittal"] },
+      { "joint": "wrist", "action": "adduction", "planes": ["frontal"] }
     ],
     "planes": ["sagittal", "frontal"],
     "joints": ["wrist"],
@@ -40,10 +40,10 @@
   {
     "code": "palmarisLongus",
     "name": "Palmaris longus",
-    "latinName": "Musculus palmaris longus",
-    "group": "forearms",
+    "latinName": "Palmaris longus",
+    "region": ["forearms"],
     "actions": [
-      { "joint": "wrist", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
+      { "joint": "wrist", "action": "flexion", "planes": ["sagittal"] }
     ],
     "planes": ["sagittal"],
     "joints": ["wrist"],
@@ -52,10 +52,10 @@
   {
     "code": "pronatorTeres",
     "name": "Pronator teres",
-    "latinName": "Musculus pronator teres",
-    "group": "forearms",
+    "latinName": "Pronator teres",
+    "region": ["forearms"],
     "actions": [
-      { "joint": "forearm", "action": "pronation", "role": "prime", "planes": ["transverse"] },
+      { "joint": "radioulnaris", "action": "pronation", "role": "prime", "planes": ["transverse"] },
       { "joint": "elbow", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
     ],
     "planes": ["transverse", "sagittal"],
@@ -65,11 +65,11 @@
   {
     "code": "extensorCarpiRadialisLongus",
     "name": "Extensor carpi radialis longus",
-    "latinName": "Musculus extensor carpi radialis longus",
-    "group": "forearms",
+    "latinName": "Extensor carpi radialis longus",
+    "region": ["forearms"],
     "actions": [
-      { "joint": "wrist", "action": "extension", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "wrist", "action": "abduction", "role": "synergist", "planes": ["frontal"] }
+      { "joint": "wrist", "action": "extension", "planes": ["sagittal"] },
+      { "joint": "wrist", "action": "abduction", "planes": ["frontal"] }
     ],
     "planes": ["sagittal", "frontal"],
     "joints": ["wrist"],
@@ -78,8 +78,8 @@
   {
     "code": "extensorCarpiRadialisBrevis",
     "name": "Extensor carpi radialis brevis",
-    "latinName": "Musculus extensor carpi radialis brevis",
-    "group": "forearms",
+    "latinName": "Extensor carpi radialis brevis",
+    "region": ["forearms"],
     "actions": [
       { "joint": "wrist", "action": "extension", "role": "prime", "planes": ["sagittal"] },
       { "joint": "wrist", "action": "abduction", "role": "synergist", "planes": ["frontal"] }
@@ -91,8 +91,8 @@
   {
     "code": "extensorCarpiUlnaris",
     "name": "Extensor carpi ulnaris",
-    "latinName": "Musculus extensor carpi ulnaris",
-    "group": "forearms",
+    "latinName": "Extensor carpi ulnaris",
+    "region": ["forearms"],
     "actions": [
       { "joint": "wrist", "action": "extension", "role": "prime", "planes": ["sagittal"] },
       { "joint": "wrist", "action": "adduction", "role": "synergist", "planes": ["frontal"] }
@@ -104,8 +104,8 @@
   {
     "code": "supinator",
     "name": "Supinator",
-    "latinName": "Musculus supinator",
-    "group": "forearms",
+    "latinName": "Supinator",
+    "region": ["forearms"],
     "actions": [
       { "joint": "forearm", "action": "supination", "role": "prime", "planes": ["transverse"] }
     ],

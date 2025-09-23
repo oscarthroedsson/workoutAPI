@@ -2,8 +2,8 @@
   {
     "code": "sternocleidomastoid",
     "name": "Sternocleidomastoid",
-    "latinName": "Musculus sternocleidomastoideus",
-    "group": "neck",
+    "latinName": "Sternocleidomastoideus",
+    "regions": ["neck"],
     "actions": [
       { "joint": "spine", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
       { "joint": "spine", "action": "rotation", "role": "prime", "planes": ["transverse"] },
@@ -14,40 +14,16 @@
     "directions": ["anterior", "lateral"]
   },
   {
-    "code": "scalenesAnterior",
-    "name": "Scalenus anterior",
-    "latinName": "Musculus scalenus anterior",
-    "group": "neck",
+    "code": "scalenes",
+    "name": "Scalenes",
+    "latinName": "Scaleni",
+    "regions": ["neck"],
     "actions": [
-      { "joint": "spine", "action": "flexion", "role": "synergist", "planes": ["sagittal"] },
-      { "joint": "spine", "action": "lateralFlexion", "role": "synergist", "planes": ["frontal"] }
+      { "joint": "spine", "action": "flexion", "role": "synergist", "planes": ["sagittal"] },  
+      { "joint": "spine", "action": "lateralFlexion", "role": "prime", "planes": ["frontal"] }
     ],
     "planes": ["sagittal", "frontal"],
     "joints": ["spine"],
-    "directions": ["lateral", "anterior"]
-  },
-  {
-    "code": "scalenesMiddle",
-    "name": "Scalenus medius",
-    "latinName": "Musculus scalenus medius",
-    "group": "neck",
-    "actions": [
-      { "joint": "spine", "action": "lateralFlexion", "role": "prime", "planes": ["frontal"] }
-    ],
-    "planes": ["frontal"],
-    "joints": ["spine"],
-    "directions": ["lateral"]
-  },
-  {
-    "code": "scalenesPosterior",
-    "name": "Scalenus posterior",
-    "latinName": "Musculus scalenus posterior",
-    "group": "neck",
-    "actions": [
-      { "joint": "spine", "action": "lateralFlexion", "role": "synergist", "planes": ["frontal"] }
-    ],
-    "planes": ["frontal"],
-    "joints": ["spine"],
-    "directions": ["lateral", "posterior"]
+    "directions": ["anterior", "lateral", "posterior"]
   }
 ]

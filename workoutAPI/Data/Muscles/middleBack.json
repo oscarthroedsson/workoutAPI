@@ -1,42 +1,17 @@
 [
   {
-    "code": "trapeziusMiddle",
-    "name": "Trapezius (middle fibers)",
-    "latinName": "Musculus trapezius (pars transversa)",
-    "group": "middle_back",
+    "code": "trapezius",
+    "name": "Trapezius",
+    "latinName": "Trapezius",
+    "region": ["middle_back", "neck"],
     "actions": [
-      { "joint": "scapula", "action": "retraction", "role": "prime", "planes": ["frontal"] }
+      { "joint": "shoulderGirdle", "action": "elevation", "role": "prime", "planes": ["frontal"] },
+      { "joint": "shoulderGirdle", "action": "retraction", "role": "prime", "planes": ["frontal"] },
+      { "joint": "shoulderGirdle", "action": "depression", "role": "prime", "planes": ["frontal"] },
+      { "joint": "spine", "action": "extension", "role": "synergist", "planes": ["sagittal"] }
     ],
-    "planes": ["frontal"],
-    "joints": ["shoulderGirdle"],
-    "directions": ["posterior"]
-  },
-  {
-    "code": "rhomboideusMajor",
-    "name": "Rhomboid major",
-    "latinName": "Musculus rhomboideus major",
-    "group": "middle_back",
-    "actions": [
-      { "joint": "scapula", "action": "retraction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "scapula", "action": "elevation", "role": "synergist", "planes": ["frontal"] },
-      { "joint": "scapula", "action": "downwardRotation", "role": "synergist", "planes": ["frontal"] }
-    ],
-    "planes": ["frontal"],
-    "joints": ["shoulderGirdle"],
-    "directions": ["posterior", "medial"]
-  },
-  {
-    "code": "rhomboideusMinor",
-    "name": "Rhomboid minor",
-    "latinName": "Musculus rhomboideus minor",
-    "group": "middle_back",
-    "actions": [
-      { "joint": "scapula", "action": "retraction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "scapula", "action": "elevation", "role": "synergist", "planes": ["frontal"] },
-      { "joint": "scapula", "action": "downwardRotation", "role": "synergist", "planes": ["frontal"] }
-    ],
-    "planes": ["frontal"],
-    "joints": ["shoulderGirdle"],
-    "directions": ["posterior", "medial"]
+    "planes": ["frontal", "sagittal"],
+    "joints": ["shoulderGirdle", "spine"],
+    "directions": ["posterior", "superior", "inferior", "medial"]
   }
 ]

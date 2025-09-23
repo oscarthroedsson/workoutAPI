@@ -1,13 +1,13 @@
 [
   {
-    "code": "bicepsFemorisLongHead",
-    "name": "Biceps femoris (long head)",
-    "latinName": "Musculus biceps femoris caput longum",
-    "group": "hamstrings",
+    "code": "bicepsFemoris",
+    "name": "Biceps femoris",
+    "latinName": "Biceps femoris",
+    "region": ["hamstrings"],
     "actions": [
-      { "joint": "knee", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
+      { "joint": "knee", "action": "flexion", "role": "prime", "planes": ["sagittal"] }, 
       { "joint": "knee", "action": "externalRotation", "role": "synergist", "planes": ["transverse"] },
-      { "joint": "hip", "action": "extension", "role": "synergist", "planes": ["sagittal"] },
+      { "joint": "hip", "action": "extension", "planes": ["sagittal"] },
       { "joint": "hip", "action": "externalRotation", "role": "synergist", "planes": ["transverse"] }
     ],
     "planes": ["sagittal", "transverse"],
@@ -15,23 +15,10 @@
     "directions": ["posterior", "lateral"]
   },
   {
-    "code": "bicepsFemorisShortHead",
-    "name": "Biceps femoris (short head)",
-    "latinName": "Musculus biceps femoris caput breve",
-    "group": "hamstrings",
-    "actions": [
-      { "joint": "knee", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "knee", "action": "externalRotation", "role": "synergist", "planes": ["transverse"] }
-    ],
-    "planes": ["sagittal", "transverse"],
-    "joints": ["knee"],
-    "directions": ["posterior", "lateral"]
-  },
-  {
     "code": "semitendinosus",
     "name": "Semitendinosus",
-    "latinName": "Musculus semitendinosus",
-    "group": "hamstrings",
+    "latinName": "Semitendinosus",
+    "region": ["hamstrings"],
     "actions": [
       { "joint": "knee", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
       { "joint": "knee", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] },
@@ -44,8 +31,8 @@
   {
     "code": "semimembranosus",
     "name": "Semimembranosus",
-    "latinName": "Musculus semimembranosus",
-    "group": "hamstrings",
+    "latinName": "semimembranosus",
+    "region": "hamstrings",
     "actions": [
       { "joint": "knee", "action": "flexion", "role": "prime", "planes": ["sagittal"] },
       { "joint": "knee", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] },

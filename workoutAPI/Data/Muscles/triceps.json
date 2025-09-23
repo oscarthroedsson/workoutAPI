@@ -1,40 +1,15 @@
-[
-  {
-    "code": "tricepsBrachiiLongHead",
-    "name": "Triceps brachii (long head)",
-    "latinName": "Musculus triceps brachii caput longum",
-    "group": "triceps",
-    "actions": [
-      { "joint": "elbow", "action": "extension", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "shoulder", "action": "extension", "role": "synergist", "planes": ["sagittal"] },
-      { "joint": "shoulder", "action": "adduction", "role": "synergist", "planes": ["frontal"] }
-    ],
-    "planes": ["sagittal", "frontal"],
-    "joints": ["elbow", "shoulder"],
-    "directions": ["posterior"]
-  },
-  {
-    "code": "tricepsBrachiiLateralHead",
-    "name": "Triceps brachii (lateral head)",
-    "latinName": "Musculus triceps brachii caput laterale",
-    "group": "triceps",
-    "actions": [
-      { "joint": "elbow", "action": "extension", "role": "prime", "planes": ["sagittal"] }
-    ],
-    "planes": ["sagittal"],
-    "joints": ["elbow"],
-    "directions": ["posterior", "lateral"]
-  },
-  {
-    "code": "tricepsBrachiiMedialHead",
-    "name": "Triceps brachii (medial head)",
-    "latinName": "Musculus triceps brachii caput mediale",
-    "group": "triceps",
-    "actions": [
-      { "joint": "elbow", "action": "extension", "role": "prime", "planes": ["sagittal"] }
-    ],
-    "planes": ["sagittal"],
-    "joints": ["elbow"],
-    "directions": ["posterior", "medial"]
-  }
-]
+{
+  "code": "triceps",
+  "name": "Triceps brachii",
+  "latinName": "triceps brachii",
+  "region": ["triceps"],
+  "actions": [
+    { "joint": "elbow", "action": "extension",  "planes": ["sagittal"] },
+    { "joint": "shoulder", "action": "extension",  "planes": ["sagittal"] },
+    { "joint": "shoulder", "action": "adduction",  "planes": ["frontal"] },
+    { "joint": "shoulder", "action": "externalrotation", "planes": ["transverse"] }
+  ],
+  "planes": ["sagittal", "frontal"],
+  "joints": ["elbow", "shoulder"],
+  "directions": ["posterior", "lateral", "medial"]
+}

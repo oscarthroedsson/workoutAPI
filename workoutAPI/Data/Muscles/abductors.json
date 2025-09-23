@@ -1,12 +1,26 @@
 [
   {
+    "code": "gluteusMaximus",
+    "name": "Gluteus maximus",
+    "latinName": "Gluteus maximus",
+    "region": ["glutes", "abductors"],
+    "actions": [
+      { "joint": "hip", "action": "extension", "role": "prime", "planes": ["sagittal"] },
+      { "joint": "hip", "action": "externalRotation", "role": "prime", "planes": ["transverse"] },
+      { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] } 
+    ],
+    "planes": ["sagittal", "transverse", "frontal"],
+    "joints": ["hip"],
+    "directions": ["posterior", "lateral"]
+  },
+  {
     "code": "gluteusMedius",
     "name": "Gluteus medius",
-    "latinName": "Musculus gluteus medius",
-    "group": "abductors",
+    "latinName": "Gluteus medius",
+    "region": ["glutes", "abductors"],
     "actions": [
       { "joint": "hip", "action": "abduction", "role": "prime", "planes": ["frontal"] },
-      { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] }
+      { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] } 
     ],
     "planes": ["frontal", "transverse"],
     "joints": ["hip"],
@@ -15,11 +29,10 @@
   {
     "code": "gluteusMinimus",
     "name": "Gluteus minimus",
-    "latinName": "Musculus gluteus minimus",
-    "group": "abductors",
+    "latinName": "Gluteus minimus",
+    "region": ["glutes", "abductors"],
     "actions": [
-      { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] },
-      { "joint": "hip", "action": "internalRotation", "role": "prime", "planes": ["transverse"] }
+      { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] }
     ],
     "planes": ["frontal", "transverse"],
     "joints": ["hip"],
@@ -28,15 +41,14 @@
   {
     "code": "tensorFasciaeLatae",
     "name": "Tensor fasciae latae",
-    "latinName": "Musculus tensor fasciae latae",
-    "group": "abductors",
+    "latinName": "Tensor fasciae latae",
+    "region": ["glutes", "abductors"],
     "actions": [
       { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] },
-      { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] },
       { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
     ],
     "planes": ["frontal", "transverse", "sagittal"],
-    "joints": ["hip"],
+    "joints": ["hip", "knee"],
     "directions": ["lateral", "anterior"]
   }
 ]

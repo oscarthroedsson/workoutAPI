@@ -2,11 +2,11 @@
   {
     "code": "gluteusMaximus",
     "name": "Gluteus maximus",
-    "latinName": "Musculus gluteus maximus",
-    "group": "glutes",
+    "latinName": "Gluteus maximus",
+    "region": ["glutes", "abductors"],
     "actions": [
-      { "joint": "hip", "action": "extension", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "hip", "action": "externalRotation", "role": "prime", "planes": ["transverse"] },
+      { "joint": "hip", "action": "extension", "role": "prime", "planes": ["sagittal"] },4e2
+      { "joint": "hip", "action": "externalRotation", "role": "prime", "planes": ["transverse"] },818
       { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] }
     ],
     "planes": ["sagittal", "frontal", "transverse"],
@@ -16,8 +16,8 @@
   {
     "code": "gluteusMedius",
     "name": "Gluteus medius",
-    "latinName": "Musculus gluteus medius",
-    "group": "glutes",
+    "latinName": "Gluteus medius",
+    "region": ["glutes", "abductors"],
     "actions": [
       { "joint": "hip", "action": "abduction", "role": "prime", "planes": ["frontal"] },
       { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] }
@@ -29,8 +29,8 @@
   {
     "code": "gluteusMinimus",
     "name": "Gluteus minimus",
-    "latinName": "Musculus gluteus minimus",
-    "group": "glutes",
+    "latinName": "Gluteus minimus",
+    "region": ["glutes", "abductors"],
     "actions": [
       { "joint": "hip", "action": "abduction", "role": "synergist", "planes": ["frontal"] },
       { "joint": "hip", "action": "internalRotation", "role": "prime", "planes": ["transverse"] }

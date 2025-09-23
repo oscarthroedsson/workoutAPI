@@ -2,11 +2,11 @@
   {
     "code": "iliocostalisLumborum",
     "name": "Iliocostalis lumborum",
-    "latinName": "Musculus iliocostalis lumborum",
-    "group": "lower_back",
+    "latinName": "Iliocostalis lumborum",
+    "regions": ["lower_back"],
     "actions": [
-      { "joint": "spine", "action": "extension", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "spine", "action": "lateralFlexion", "role": "synergist", "planes": ["frontal"] }
+      { "joint": "spine", "action": "extension",  "planes": ["sagittal"] },
+      { "joint": "spine", "action": "lateralFlexion",  "planes": ["frontal"] }
     ],
     "planes": ["sagittal", "frontal"],
     "joints": ["spine"],
@@ -15,8 +15,8 @@
   {
     "code": "longissimusThoracis",
     "name": "Longissimus thoracis",
-    "latinName": "Musculus longissimus thoracis",
-    "group": "lower_back",
+    "latinName": "Longissimus thoracis",
+    "regions": ["lower_back"],
     "actions": [
       { "joint": "spine", "action": "extension", "role": "prime", "planes": ["sagittal"] },
       { "joint": "spine", "action": "lateralFlexion", "role": "synergist", "planes": ["frontal"] }
@@ -28,10 +28,10 @@
   {
     "code": "spinalisThoracis",
     "name": "Spinalis thoracis",
-    "latinName": "Musculus spinalis thoracis",
-    "group": "lower_back",
+    "latinName": "Spinalis thoracis",
+    "regions": ["lower_back"],
     "actions": [
-      { "joint": "spine", "action": "extension", "role": "prime", "planes": ["sagittal"] }
+      { "joint": "spine", "action": "extension",  "planes": ["sagittal"] }
     ],
     "planes": ["sagittal"],
     "joints": ["spine"],

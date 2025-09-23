@@ -2,8 +2,8 @@
   {
     "code": "latissimusDorsi",
     "name": "Latissimus dorsi",
-    "latinName": "Musculus latissimus dorsi",
-    "group": "lats",
+    "latinName": "Latissimus dorsi",
+    "regions": ["lats"],
     "actions": [
       { "joint": "shoulder", "action": "extension", "role": "prime", "planes": ["sagittal"] },
       { "joint": "shoulder", "action": "adduction", "role": "prime", "planes": ["frontal"] },

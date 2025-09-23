@@ -1,0 +1,19 @@
+[{
+  "code": "deltoideus",
+  "name": "Deltoideus",
+  "latinName": "Musculus deltoideus",
+  "region": ["shoulders"],
+  "actions": [
+    { "joint": "shoulder", "action": "abduction", "role": "prime", "planes": ["frontal"] },
+    { "joint": "shoulder", "action": "flexion", "role": "depends", "planes": ["sagittal"] }, 
+    { "joint": "shoulder", "action": "extension", "role": "depends", "planes": ["sagittal"] },
+    { "joint": "shoulder", "action": "internalRotation", "role": "depends", "planes": ["transverse"] },
+    { "joint": "shoulder", "action": "externalRotation", "role": "depends", "planes": ["transverse"] },
+    { "joint": "shoulder", "action": "horizontalAbduction", "role": "depends", "planes": ["transverse"] },
+    { "joint": "shoulder", "action": "horizontalAdduction", "role": "depends", "planes": ["transverse"] }
+  ],
+  "planes": ["frontal", "sagittal", "transverse"],
+  "joints": ["shoulder"],
+  "directions": ["anterior", "posterior", "lateral", "superior", "medial"]
+}
+]

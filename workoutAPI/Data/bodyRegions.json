@@ -1,0 +1,19 @@
+[
+  { "code": "abdominals", "name": "Abdominals", "latinName": "Abdominales" },
+  { "code": "abductors", "name": "Abductors", "latinName": "Abductores" },
+  { "code": "adductors", "name": "Adductors", "latinName": "Adductores" },
+  { "code": "biceps", "name": "Biceps", "latinName": "Musculi bicipites brachii" },
+  { "code": "calves", "name": "Calves", "latinName": "Triceps surae" },
+  { "code": "chest", "name": "Chest", "latinName": "Pectorales" },
+  { "code": "forearms", "name": "Forearms", "latinName": "Antebrachium" },
+  { "code": "glutes", "name": "Glutes", "latinName": "Glutei" },
+  { "code": "hamstrings", "name": "Hamstrings", "latinName": "Ischiocrurales" },
+  { "code": "lats", "name": "Latissimus dorsi", "latinName": "Latissimus dorsi" },
+  { "code": "lowerBack", "name": "Lower back", "latinName": "Erector spinae (pars lumbalis)" },
+  { "code": "middleBack", "name": "Middle back", "latinName": "Rhomboidei / Trapezius pars media" },
+  { "code": "neck", "name": "Neck", "latinName": "Colli" },
+  { "code": "quadriceps", "name": "Quadriceps", "latinName": "Quadriceps femoris" },
+  { "code": "traps", "name": "Trapezius", "latinName": "Trapezius" },
+  { "code": "triceps", "name": "Triceps", "latinName": "Triceps brachii" },
+  { "code": "shoulder", "name": "shoulder", "latinName": "Cingulum membri superioris"}
+]

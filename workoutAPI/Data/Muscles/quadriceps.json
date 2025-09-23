@@ -2,8 +2,8 @@
   {
     "code": "rectusFemoris",
     "name": "Rectus femoris",
-    "latinName": "Musculus rectus femoris",
-    "group": "quadriceps",
+    "latinName": "Rectus femoris",
+    "regions": ["quadriceps"],
     "actions": [
       { "joint": "hip", "action": "flexion", "role": "synergist", "planes": ["sagittal"] },
       { "joint": "knee", "action": "extension", "role": "prime", "planes": ["sagittal"] }
@@ -15,8 +15,8 @@
   {
     "code": "vastusLateralis",
     "name": "Vastus lateralis",
-    "latinName": "Musculus vastus lateralis",
-    "group": "quadriceps",
+    "latinName": "Vastus lateralis",
+    "regions": ["quadriceps"],
     "actions": [
       { "joint": "knee", "action": "extension", "role": "prime", "planes": ["sagittal"] }
     ],
@@ -27,8 +27,8 @@
   {
     "code": "vastusMedialis",
     "name": "Vastus medialis",
-    "latinName": "Musculus vastus medialis",
-    "group": "quadriceps",
+    "latinName": "Vastus medialis",
+    "regions": ["quadriceps"],
     "actions": [
       { "joint": "knee", "action": "extension", "role": "prime", "planes": ["sagittal"] }
     ],
@@ -39,8 +39,8 @@
   {
     "code": "vastusIntermedius",
     "name": "Vastus intermedius",
-    "latinName": "Musculus vastus intermedius",
-    "group": "quadriceps",
+    "latinName": "Vastus intermedius",
+    "regions": ["quadriceps"],
     "actions": [
       { "joint": "knee", "action": "extension", "role": "prime", "planes": ["sagittal"] }
     ],

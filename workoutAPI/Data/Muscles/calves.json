@@ -1,22 +1,9 @@
 [
   {
-    "code": "gastrocnemiusMedialHead",
-    "name": "Gastrocnemius (medial head)",
-    "latinName": "Musculus gastrocnemius caput mediale",
-    "group": "calves",
-    "actions": [
-      { "joint": "ankle", "action": "plantarflexion", "role": "prime", "planes": ["sagittal"] },
-      { "joint": "knee", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
-    ],
-    "planes": ["sagittal"],
-    "joints": ["ankle", "knee"],
-    "directions": ["posterior"]
-  },
-  {
-    "code": "gastrocnemiusLateralHead",
-    "name": "Gastrocnemius (lateral head)",
-    "latinName": "Musculus gastrocnemius caput laterale",
-    "group": "calves",
+    "code": "gastrocnemius",
+    "name": "Gastrocnemius",
+    "latinName": "Musculus gastrocnemius",
+    "region": ["calves"],
     "actions": [
       { "joint": "ankle", "action": "plantarflexion", "role": "prime", "planes": ["sagittal"] },
       { "joint": "knee", "action": "flexion", "role": "synergist", "planes": ["sagittal"] }
@@ -29,7 +16,7 @@
     "code": "soleus",
     "name": "Soleus",
     "latinName": "Musculus soleus",
-    "group": "calves",
+    "region": ["calves"],
     "actions": [
       { "joint": "ankle", "action": "plantarflexion", "role": "prime", "planes": ["sagittal"] }
     ],
