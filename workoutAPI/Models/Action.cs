@@ -16,7 +16,7 @@ public class ActionBase
 public class ActionSmall
 {
     public string Name { get; set; } = string.Empty;
-    public string? Description { get; set; }
+    public string? LatinName { get; set; }
     public PlanesSmall Actions { get; set; }
 }
 

@@ -18,11 +18,11 @@
     "name": "Gluteus medius",
     "latinName": "Gluteus medius",
     "region": ["glutes", "abductors"],
+    "planes": ["frontal", "transverse"],
     "actions": [
       { "joint": "hip", "action": "abduction", "role": "prime", "planes": ["frontal"] },
       { "joint": "hip", "action": "internalRotation", "role": "synergist", "planes": ["transverse"] } 
     ],
-    "planes": ["frontal", "transverse"],
     "joints": ["hip"],
     "directions": ["lateral"]
   },

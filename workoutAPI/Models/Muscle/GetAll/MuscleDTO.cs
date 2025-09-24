@@ -29,7 +29,25 @@ public class MuscleTable : BaseModel
     // Relationalships to mucles in MuscleTable
     public List<MuscleActionPlane>? muscle_actions_planes { get; set; }
     public List<MuscleActionJoint>? muscle_actions_joint { get; set; }
+    public List<MuscleRegion>? muscle_regions  { get; set; }
 }
+
+public class MuscleRegion
+{
+    [Column("region_id")]
+    public int RegionId { get; set; }
+    public BodyRegion? BodyRegions { get; set; } 
+}
+
+public class BodyRegion
+{
+    [Column("name")]
+    public string? Name { get; set; }
+    
+    [Column("latinName")]
+    public string? LatinName { get; set; }
+}
+
 
 public class MuscleActionPlane
 {

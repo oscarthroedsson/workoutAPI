@@ -8,7 +8,7 @@ public class Muscle
     public string LatinName { get; set; }
     public DateTimeOffset? CreatedAt { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
-
+    public string MuscleRegion { get; set; }
     public List<PlanesSmall>? Planes { get; set; }
     public List<ActionSmall>? Actions { get; set; }
 }
