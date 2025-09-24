@@ -44,12 +44,12 @@ public class MuscleController : Controller
                         action_id,
                         Joint(name, latinName),
                         Actions(name, description)
-        )(
-                        joint_id,
-                        action_id,
-                        Joint(name, latinName),
-                        Actions(name, description)
-                        )
+                        ),
+                        
+                      muscle_regions:muscle_regions_muscle_id_fkey(
+            region_id,
+            BodyRegions!muscle_regions_region_id_fkey(name, latinName)
+        )
     ")
                 .Get();
 
