@@ -20,23 +20,22 @@ public class MuscleController : Controller
     
     [HttpGet("")]
     public async Task<IActionResult> GetAll(
-        [FromQuery] bool? includePlaneMovement = false,
-        [FromQuery] bool? includeMuscleRegion = false,
-        [FromQuery] bool? includeJointActions = false,
-        [FromQuery] bool? includeMovementType = false
+        [FromQuery] bool includePlaneMovement = false,
+        [FromQuery] bool includeMuscleRegion = false,
+        [FromQuery] bool includeJointActions = false
         )
     {
         string queryString = "id, code, name, latinName, created_at, updated_at";
-        if (includePlaneMovement == true)
+        if (includePlaneMovement)
         {
             queryString += ", muscle_actions_planes:muscle_actions_planes_muscle_id_fkey(plane_id, Planes(name, description))";
         }
-        if (includeJointActions == true)
+        if (includeJointActions)
         {
             queryString += ", muscle_actions_joint:muscle_actions_muscle_id_fkey(joint_id, action_id, Joint(name, latinName), Actions(name, description))";  
         }
 
-        if (includeMuscleRegion == true)
+        if (includeMuscleRegion)
         {
             queryString +=
                 ", muscle_regions:muscle_regions_muscle_id_fkey(region_id, BodyRegions!muscle_regions_region_id_fkey(name, latinName))";
@@ -62,5 +61,46 @@ public class MuscleController : Controller
             return StatusCode(500, new { error = "Failed to fetch muscles", details = ex.Message });
         }
        
+    }
+
+    [HttpGet("{muscleID}")]
+    public async Task<IActionResult> Get(Guid muscleID, 
+        [FromQuery] bool includePlaneMovement = false,
+        [FromQuery] bool includeMuscleRegion = false,
+        [FromQuery] bool includeJointActions = false)
+    {
+        if(muscleID == Guid.Empty) return BadRequest("Invalid muscle ID");
+        
+        var options = new MuscleQueryOptions
+        {
+            IncludePlaneMovement = includePlaneMovement,
+            IncludeMuscleRegion = includeMuscleRegion,
+            IncludeJointActions = includeJointActions
+        };
+        var query = SupabaseQueryBuilder.MuscleDefaultQuery(options).Build();
+
+        try
+        {
+            var response = await _supabase
+                .From<MuscleTable>()
+                .Select(query)
+                .Where(x => x.Id == muscleID)
+                .Get();
+
+            if (response.Models.Count < 1)
+            {
+                return NotFound($"Muscle with ID {muscleID} not found");
+            }
+
+            var mappedMuscle = MuscleMapper.MapFromTable(response.Models.First());
+            return Ok(mappedMuscle);
+
+
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while fetching the muscle");
+        }
+        
     }
 }
