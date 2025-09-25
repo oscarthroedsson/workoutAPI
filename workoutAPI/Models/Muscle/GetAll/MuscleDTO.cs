@@ -36,10 +36,10 @@ public class MuscleRegion
 {
     [Column("region_id")]
     public int RegionId { get; set; }
-    public BodyRegion? BodyRegions { get; set; } 
+    public MuscleBodyRegion? BodyRegions { get; set; } 
 }
 
-public class BodyRegion
+public class MuscleBodyRegion
 {
     [Column("name")]
     public string? Name { get; set; }

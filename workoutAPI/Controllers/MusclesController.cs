@@ -25,28 +25,20 @@ public class MuscleController : Controller
         [FromQuery] bool includeJointActions = false
         )
     {
-        string queryString = "id, code, name, latinName, created_at, updated_at";
-        if (includePlaneMovement)
+        var options = new MuscleQueryOptions
         {
-            queryString += ", muscle_actions_planes:muscle_actions_planes_muscle_id_fkey(plane_id, Planes(name, description))";
-        }
-        if (includeJointActions)
-        {
-            queryString += ", muscle_actions_joint:muscle_actions_muscle_id_fkey(joint_id, action_id, Joint(name, latinName), Actions(name, description))";  
-        }
-
-        if (includeMuscleRegion)
-        {
-            queryString +=
-                ", muscle_regions:muscle_regions_muscle_id_fkey(region_id, BodyRegions!muscle_regions_region_id_fkey(name, latinName))";
-        }
+            IncludePlaneMovement = includePlaneMovement,
+            IncludeMuscleRegion = includeMuscleRegion,
+            IncludeJointActions = includeJointActions
+        };
+        var query = SupabaseQueryBuilder.MuscleDefaultQuery(options).Build();
       
         
         try
         {
             var response = await _supabase
                 .From<MuscleTable>()
-                .Select(queryString)
+                .Select(query)
                 .Get();
             
             var muscles = response.Models.Select(MuscleMapper.MapFromTable).ToList();
@@ -103,4 +95,6 @@ public class MuscleController : Controller
         }
         
     }
+
+    
 }

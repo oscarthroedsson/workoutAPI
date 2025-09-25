@@ -12,3 +12,10 @@ public class Muscle
     public List<PlanesSmall>? Planes { get; set; }
     public List<ActionSmall>? JointActions { get; set; }
 }
+
+public class MuscleSmall
+{
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public string LatinName { get; set; }
+}
