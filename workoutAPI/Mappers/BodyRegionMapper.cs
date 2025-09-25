@@ -15,13 +15,13 @@ public class BodyRegionMapper
             Name = table.Name,
             LatinName = table.LatinName,
             
-            Muscles = table.muscle_regions.Select(m => new MuscleSmall
+            Muscles = table.muscle_regions?.Select(m => new MuscleSmall
             {
-                Code = m.Muscles.Code,
+                Code = m.Muscles?.Code,
                 Name = m.Muscles.Name,
                 LatinName = m.Muscles.LatinName
                 
-            }).ToList()
+            }).ToList() ?? new List<MuscleSmall>(),
         };
 
     }

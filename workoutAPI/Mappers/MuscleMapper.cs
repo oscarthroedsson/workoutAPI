@@ -40,5 +40,5 @@ public static class MuscleMapper
         };
         
     }
-
+    
 }

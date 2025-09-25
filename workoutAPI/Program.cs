@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables(); // make it possible to get env variables
 builder.Services.AddControllers(); // add controllers
 
-
 await builder.AddSupabaseAsync();
 
 

@@ -1,5 +1,4 @@
 using workoutAPI.Models.Muscle;
-
 namespace workoutAPI.Models.BodyRegions;
 
 public class BodyRegionModel

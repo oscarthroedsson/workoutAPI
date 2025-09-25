@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Text.Json;
 using Supabase;
-using workoutAPI.Models;
 using workoutAPI.Models.Muscle;
+using workoutAPI.Services;
 
 
 namespace workoutAPI.Controllers;
@@ -31,8 +29,7 @@ public class MuscleController : Controller
             IncludeMuscleRegion = includeMuscleRegion,
             IncludeJointActions = includeJointActions
         };
-        var query = SupabaseQueryBuilder.MuscleDefaultQuery(options).Build();
-      
+        var query = QueryHelpers.DefaultQueryMuscle(options).Build();
         
         try
         {
@@ -48,8 +45,6 @@ public class MuscleController : Controller
         catch (Exception ex)
         {
             Console.WriteLine($"Error fetching muscles: {ex.Message}");
-
-            // Returnera 500 Internal Server Error med meddelande
             return StatusCode(500, new { error = "Failed to fetch muscles", details = ex.Message });
         }
        
@@ -69,7 +64,7 @@ public class MuscleController : Controller
             IncludeMuscleRegion = includeMuscleRegion,
             IncludeJointActions = includeJointActions
         };
-        var query = SupabaseQueryBuilder.MuscleDefaultQuery(options).Build();
+        var query = QueryHelpers.DefaultQueryMuscle(options).Build();
 
         try
         {
@@ -89,7 +84,7 @@ public class MuscleController : Controller
 
 
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return StatusCode(500, "An error occurred while fetching the muscle");
         }

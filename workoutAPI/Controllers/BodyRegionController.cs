@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Supabase;
 using workoutAPI.Mappers;
 using workoutAPI.Models.BodyRegions;
+using workoutAPI.Services;
 
 namespace workoutAPI.Controllers;
 
@@ -25,22 +26,20 @@ public class BodyRegionController : Controller
     
     
     [HttpGet("all")]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll(
+        [FromQuery] bool includeMuscles = false
+        )
     {
-
+        var options = new BodyRegionQueryOptions
+        {
+            IncludeMuscles = includeMuscles
+        };
+    
+        var query = QueryHelpers.DefaultQueryBodyRegion(options).Build();
         try
         {
-            var response = await _supabase.From<BodyRegionsDTO>().Select(@"id, code, name, latinName,
-            muscle_regions:muscle_regions_region_id_fkey(
-                id, muscle_id,
-                muscles:muscle_regions_muscle_id_fkey(
-                    id, code, name, latinName
-                    )
-                )
-            ").Get();
-
+            var response = await _supabase.From<BodyRegionsDTO>().Select(query).Get();
             var bodyRegions = response.Models.Select(BodyRegionMapper.MapFromTable).ToList();
-            
             return Ok(bodyRegions);
         }
         catch (Exception ex)
