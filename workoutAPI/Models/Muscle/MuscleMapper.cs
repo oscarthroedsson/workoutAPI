@@ -25,9 +25,9 @@ public static class MuscleMapper
             {
                 Name = p.Planes.Name,
                 Description = p.Planes.Description
-            }).ToList(),
+            }).ToList() ?? new List<PlanesSmall>(),
 
-            Actions = table.muscle_actions_joint?.Select(j => new ActionSmall
+            JointActions = table.muscle_actions_joint?.Select(j => new ActionSmall
             {
                 Name = j.Joint.Name,
                 LatinName = j.Joint.LatinName,
@@ -36,7 +36,7 @@ public static class MuscleMapper
                     Name = j.Actions.Name,
                     Description = j.Actions.Description
                 }
-            }).ToList()
+            }).ToList()  ?? new List<ActionSmall>(),
         };
         
     }

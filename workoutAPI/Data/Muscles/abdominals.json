@@ -1,5 +1,4 @@
 [
- 
   {
     "code": "rectusAbdominis",
     "name": "Rectus abdominis",
@@ -21,7 +20,7 @@
       { "joint": "spine", "action": "rotation","planes": ["transverse"] },
       { "joint": "spine", "action": "lateralFlexion",  "planes": ["frontal"] }
     ],
-    "planes": ["frontal", "transverse"], 
+    "planes": ["frontal", "transverse"],
     "joints": ["spine", "lumbopelvic"],
     "directions": ["anterior", "lateral"]
   },

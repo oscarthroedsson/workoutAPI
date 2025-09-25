@@ -10,5 +10,5 @@ public class Muscle
     public DateTimeOffset? UpdatedAt { get; set; }
     public string MuscleRegion { get; set; }
     public List<PlanesSmall>? Planes { get; set; }
-    public List<ActionSmall>? Actions { get; set; }
+    public List<ActionSmall>? JointActions { get; set; }
 }
