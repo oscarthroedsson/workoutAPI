@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Supabase;
 using workoutAPI.Mappers;
@@ -48,4 +49,32 @@ public class BodyRegionController : Controller
             return StatusCode(500, "Internal server error");
         }
     }
+
+    [HttpGet("{bodyRegionID}")]
+    public async Task<IActionResult> Get(string bodyRegionID,
+        [FromQuery] bool includeMuscles = false)
+    {
+        try
+        {
+            var options = new BodyRegionQueryOptions
+            {
+                IncludeMuscles = includeMuscles
+            };
+
+            var query = QueryHelpers.DefaultQueryBodyRegion(options).Build();
+            var response = await _supabase.From<BodyRegionsDTO>().Select(query).Get();
+            
+            var bodyRegions = response.Models.Select(BodyRegionMapper.MapFromTable).ToList();
+            return Ok(bodyRegions);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while fetching the muscle region");
+        }
+
+
+
+    }
+
+
 }
