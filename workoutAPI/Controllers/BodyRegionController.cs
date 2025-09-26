@@ -51,7 +51,7 @@ public class BodyRegionController : Controller
     }
 
     [HttpGet("{bodyRegionID}")]
-    public async Task<IActionResult> Get(string bodyRegionID,
+    public async Task<IActionResult> Get(int bodyRegionID,
         [FromQuery] bool includeMuscles = false)
     {
         try
@@ -62,7 +62,7 @@ public class BodyRegionController : Controller
             };
 
             var query = QueryHelpers.DefaultQueryBodyRegion(options).Build();
-            var response = await _supabase.From<BodyRegionsDTO>().Select(query).Get();
+            var response = await _supabase.From<BodyRegionsDTO>().Select(query).Where(x => x.Id == bodyRegionID).Get();
             
             var bodyRegions = response.Models.Select(BodyRegionMapper.MapFromTable).ToList();
             return Ok(bodyRegions);
