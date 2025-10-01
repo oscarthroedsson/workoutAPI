@@ -13,3 +13,12 @@ public class BodyRegionModel
     public List<MuscleSmall> Muscles { get; set; }
     // Exercises in the future
 }
+
+public class BodyRegionSmall
+{
+    public int? Id { get; set; }
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public string LatinName { get; set; }
+}
+

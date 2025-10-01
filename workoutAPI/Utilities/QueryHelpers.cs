@@ -25,5 +25,7 @@ public class QueryHelpers
             .AddIf(options.IncludeMuscles, " muscle_regions:muscle_regions_region_id_fkey(id, muscle_id, muscles:muscle_regions_muscle_id_fkey(id, code, name, latinName))");
 
     }
+    
+    
 }
 
