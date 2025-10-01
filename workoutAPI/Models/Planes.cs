@@ -20,7 +20,7 @@ public class PlanesSmall
 
 
 [Table("Planes")]
-public class Plane : BaseModel
+public class PlaneDTO : BaseModel
 {
     [PrimaryKey("id")]
     public int Id { get; set; }

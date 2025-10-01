@@ -9,16 +9,18 @@ public class ExerciseMapper
     {
         return new ExerciseModel
         {
+            // Base
             Id = table.Id,
             Name = table.Name,
+            Equipment = table.Equipment,
+            BodyRegion = table.BodyRegions,  
+            Position = table.Positions,
+         
+            // Extras
             Instructions = table.Instructions,
             Description = table.Description,
-        
-            Equipment = table.Equipment,
-            BodyRegion = table.BodyRegions,      
             Plane = table.Planes,                
             BodyMovement = table.BodyMovements,  
-            Position = table.Positions,
         };
     }
 }

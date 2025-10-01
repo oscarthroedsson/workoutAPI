@@ -1,8 +1,23 @@
-namespace WorkoutAPI.Enums;
+namespace workoutAPI.Enums;
 
-public enum PlaneOfMotion
+public enum PlaneType
 {
-    Sagittal,   // Divides body into left and right halves
-    Frontal,    // Divides body into front and back halves
-    Transverse  // Divides body into upper and lower halves
+    Sagittal,
+    Frontal,
+    Transverse
+}
+
+public static class PlaneTypeExtensions
+{
+    private static readonly Dictionary<string, PlaneType> CodeToEnum = new()
+    {
+        { "sagittal", PlaneType.Sagittal },
+        { "frontal", PlaneType.Frontal },
+        { "transverse", PlaneType.Transverse }
+    };
+    
+    public static PlaneType? FromCode(string code)
+    {
+        return CodeToEnum.TryGetValue(code, out var type) ? type : null;
+    }
 }
