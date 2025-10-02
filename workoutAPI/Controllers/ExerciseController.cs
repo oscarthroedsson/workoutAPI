@@ -6,8 +6,6 @@ using workoutAPI.Models.Exercise;
 using workoutAPI.Models.Position;
 using Client = Supabase.Client;
 using workoutAPI.Utilities;
-
-
 namespace workoutAPI.Controllers;
 
 [Route("api/exercise")]
@@ -109,9 +107,65 @@ public class ExerciseController : Controller
         }
        
     }
-    
-    
-    
-    
-    
+
+    [HttpGet("{exerciseID}")]
+    public async Task<IActionResult>  Get(
+        string exerciseID,
+        [FromQuery] bool includeDetail = false,
+        [FromQuery] bool includeInstruction = false,
+        [FromQuery] bool includeDescription = false,
+        [FromQuery] bool includePlane = false,
+        [FromQuery] bool includeBodyMovement = false
+        )
+    {
+        if (includeDetail)
+        {
+            includeInstruction = true;
+            includeDescription = true;
+            includePlane = true;
+            includeBodyMovement = true;
+        }
+        
+        var options = new ExerciseQueryOptions()
+        {
+            IncludeDetail = includeDetail,
+            IncludeInstruction= includeInstruction,
+            IncludeDescription = includeDescription,
+            IncludePlane = includePlane,
+            IncludeBodyMovement = includeBodyMovement
+        };
+
+        var queryBuilder = new SupabaseQueryBuilder()
+            .StartWith(@"
+                        id,
+                        name,
+                        Equipment:equipment_id(id, code, name),
+                        BodyRegions:primaryBodyRegion_id(id, code, name, latinName),
+                        Positions:position_id(id, code, name, description)
+            ")
+            .AddIf(options.IncludeInstruction, "instructions")
+            .AddIf(options.IncludeDescription, "description")
+            .AddIf(options.IncludePlane, "Planes:plane_id(id,code, name, description)")
+            .AddIf(options.IncludeBodyMovement, "BodyMovements:bodyMovement_id(id, code, name, description)");
+        
+        var query = queryBuilder.Build();
+
+        try
+        {
+            var response = await _supabase
+                .From<ExerciseDTO>()
+                .Select(query)
+                .Where(x => x.Id == exerciseID)
+                .Get();
+            
+            
+            var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
+            return Ok(exercises);
+            
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }
