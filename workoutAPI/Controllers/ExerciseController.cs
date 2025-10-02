@@ -9,6 +9,8 @@ using workoutAPI.Models.Exercise;
 using workoutAPI.Models.Position;
 using Client = Supabase.Client;
 using workoutAPI.Utilities;
+using Constants = Supabase.Postgrest.Constants;
+
 namespace workoutAPI.Controllers;
 
 [Route("api/exercise")]
