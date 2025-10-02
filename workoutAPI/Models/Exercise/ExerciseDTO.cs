@@ -28,9 +28,12 @@ public class ExerciseDTO : BaseModel
     [Column("updated_at")]
     public DateTime UpdatedAt { get; set; }
     
+    [Column("search_vector")]
+    
+    // For text searches
+    public string SearchVector { get; set; }
     
     // Relationships
-
     public EquipmentSmall Equipment { get; set; }
     public BodyRegionSmall BodyRegions { get; set; }      
     public PlanesSmall Planes { get; set; }               

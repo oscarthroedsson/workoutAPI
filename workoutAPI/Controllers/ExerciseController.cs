@@ -1,4 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using Supabase.Postgrest;
 using workoutAPI.Mappers;
 using workoutAPI.Models;
 using workoutAPI.Models.BodyRegions;
@@ -162,6 +165,69 @@ public class ExerciseController : Controller
             var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
             return Ok(exercises);
             
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+
+    [HttpGet("search")]
+    public async Task<IActionResult> Search(
+        [FromQuery, Required] string query,
+        [FromQuery, ] bool includeDetail = false,
+        [FromQuery] bool includeInstruction = false,
+        [FromQuery] bool includeDescription = false,
+        [FromQuery] bool includePlane = false,
+        [FromQuery] bool includeBodyMovement = false
+        )
+    {
+        // This is required
+        if(query.IsNullOrEmpty()) return BadRequest("Query parameter is required.");
+        
+        if (includeDetail)
+        {
+            includeInstruction = true;
+            includeDescription = true;
+            includePlane = true;
+            includeBodyMovement = true;
+        }
+        
+        var options = new ExerciseQueryOptions()
+        {
+            IncludeDetail = includeDetail,
+            IncludeInstruction= includeInstruction,
+            IncludeDescription = includeDescription,
+            IncludePlane = includePlane,
+            IncludeBodyMovement = includeBodyMovement
+        };
+        try
+        {
+            var queryBuilder = new SupabaseQueryBuilder()
+                .StartWith(@"
+                        id,
+                        name,
+                        Equipment:equipment_id(id, code, name),
+                        BodyRegions:primaryBodyRegion_id(id, code, name, latinName),
+                        Positions:position_id(id, code, name, description)
+            ")
+                .AddIf(options.IncludeInstruction, "instructions")
+                .AddIf(options.IncludeDescription, "description")
+                .AddIf(options.IncludePlane, "Planes:plane_id(id,code, name, description)")
+                .AddIf(options.IncludeBodyMovement, "BodyMovements:bodyMovement_id(id, code, name, description)");
+        
+            var fields = queryBuilder.Build();
+            var response = await _supabase
+                .From<ExerciseDTO>()
+                .Select(fields)
+                .Filter(x => x.SearchVector, Constants.Operator.FTS, new FullTextSearchConfig(query, "english"))
+                .Get();
+            
+            var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
+            return Ok(exercises);
+            
+           
         }
         catch (Exception ex)
         {
