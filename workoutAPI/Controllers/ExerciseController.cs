@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Supabase.Postgrest;
@@ -6,6 +7,7 @@ using workoutAPI.Mappers;
 using workoutAPI.Models;
 using workoutAPI.Models.BodyRegions;
 using workoutAPI.Models.Exercise;
+using workoutAPI.Models.Pagination;
 using workoutAPI.Models.Position;
 using Client = Supabase.Client;
 using workoutAPI.Utilities;
@@ -39,9 +41,15 @@ public class ExerciseController : Controller
         [FromQuery] string bodyRegion = "",
         [FromQuery] string position = "",
         [FromQuery] string plane = "",
-        [FromQuery] string bodyMovement = ""
+        [FromQuery] string bodyMovement = "",
+        [FromQuery] int offset = 0,
+        [FromQuery] int number = 50,
+        [FromQuery] string sort = "name",
+        [FromQuery] string order = "asc"
      )
     {
+        var ordering = order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
+       
         // Will get the IDs so we can filter the query
         var tasks = new[]
         {
@@ -93,18 +101,25 @@ public class ExerciseController : Controller
         
         try
         {
-            
             var response = await _supabase
                 .From<ExerciseDTO>()
                 .Select(fields)
                 .ApplyFilters(filters)
-                .Limit(5)
+                .Range(offset, offset + number)
+                .Order(sort, ordering)
                 .Get();
             
-           
-
             var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
-            return Ok(exercises);
+            
+            var pagination = Pagination.CreateMetadata(
+                903,
+                offset,
+                number,
+                exercises.Count()
+            );
+
+           
+            return Ok(JSONResponse.Success(exercises, new{pagination}));
         }
         catch (Exception ex)
         {
