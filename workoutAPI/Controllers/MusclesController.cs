@@ -54,7 +54,8 @@ public class MuscleController : Controller
     public async Task<IActionResult> Get(Guid muscleID, 
         [FromQuery] bool includePlaneMovement = false,
         [FromQuery] bool includeMuscleRegion = false,
-        [FromQuery] bool includeJointActions = false)
+        [FromQuery] bool includeJointActions = false
+        )
     {
         if(muscleID == Guid.Empty) return BadRequest("Invalid muscle ID");
         

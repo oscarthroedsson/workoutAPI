@@ -9,6 +9,7 @@ using workoutAPI.Models.BodyRegions;
 using workoutAPI.Models.Exercise;
 using workoutAPI.Models.Pagination;
 using workoutAPI.Models.Position;
+using workoutAPI.Models.Requests;
 using Client = Supabase.Client;
 using workoutAPI.Utilities;
 using Constants = Supabase.Postgrest.Constants;
@@ -33,50 +34,43 @@ public class ExerciseController : Controller
 
     [HttpGet("")]
     public async Task<IActionResult> Get(
-        [FromQuery] bool includeDetail = false,
-        [FromQuery] bool includeInstruction = false,
-        [FromQuery] bool includeDescription = false,
-        [FromQuery] bool includePlane = false,
-        [FromQuery] bool includeBodyMovement = false,
-        [FromQuery] string bodyRegion = "",
-        [FromQuery] string position = "",
-        [FromQuery] string plane = "",
-        [FromQuery] string bodyMovement = "",
-        [FromQuery] int offset = 0,
-        [FromQuery] int number = 50,
-        [FromQuery] string sort = "name",
-        [FromQuery] string order = "asc"
+        [FromQuery] GetExercisesRequest req
      )
     {
-        var ordering = order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
+        req.Order ??= "asc";
+        req.Sort ??= "name";
+     
+        
+        
+        var ordering = req.Order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
        
         // Will get the IDs so we can filter the query
         var tasks = new[]
         {
-            CodeToIdService.GetIdByCodeAsync<PlaneDTO>(_supabase, plane),
-            CodeToIdService.GetIdByCodeAsync<BodyRegionsDTO>(_supabase, bodyRegion),
-            CodeToIdService.GetIdByCodeAsync<PositionDTO>(_supabase, position),
-            CodeToIdService.GetIdByCodeAsync<BodyMovementDTO>(_supabase, bodyMovement)
+            CodeToIdService.GetIdByCodeAsync<PlaneDTO>(_supabase, req.Plane),
+            CodeToIdService.GetIdByCodeAsync<BodyRegionsDTO>(_supabase, req.BodyRegion),
+            CodeToIdService.GetIdByCodeAsync<PositionDTO>(_supabase, req.Position),
+            CodeToIdService.GetIdByCodeAsync<BodyMovementDTO>(_supabase, req.BodyMovement)
         };
         var results = await Task.WhenAll(tasks);
         var (planeID, bodyRegionID, positionID, bodyMovementID) = (results[0], results[1], results[2], results[3]);
-
         
-        if (includeDetail)
+        
+        if (req.IncludeDetail)
         {
-            includeInstruction = true;
-            includeDescription = true;
-            includePlane = true;
-            includeBodyMovement = true;
+            req.IncludeInstruction = true;
+            req.IncludeDescription = true;
+            req.IncludePlane = true;
+            req.IncludeBodyMovement = true;
         }
         
         var options = new ExerciseQueryOptions()
         {
-            IncludeDetail = includeDetail,
-            IncludeInstruction= includeInstruction,
-            IncludeDescription = includeDescription,
-            IncludePlane = includePlane,
-            IncludeBodyMovement = includeBodyMovement
+            IncludeDetail = req.IncludeDetail,
+            IncludeInstruction= req.IncludeInstruction,
+            IncludeDescription = req.IncludeDescription,
+            IncludePlane = req.IncludePlane,
+            IncludeBodyMovement = req.IncludeBodyMovement
         };
 
         var queryBuilder = new SupabaseQueryBuilder()
@@ -91,10 +85,10 @@ public class ExerciseController : Controller
             .AddIf(options.IncludeDescription, "description")
             .AddIf(options.IncludePlane, "Planes:plane_id(id,code, name, description)")
             .AddIf(options.IncludeBodyMovement, "BodyMovements:bodyMovement_id(id, code, name, description)")
-            .AddFilterIf(!string.IsNullOrEmpty(plane), "plane_id", "eq", planeID)
-            .AddFilterIf(!string.IsNullOrEmpty(bodyRegion), "primaryBodyRegion_id", "eq", bodyRegionID)
-            .AddFilterIf(!string.IsNullOrEmpty(position), "position_id", "eq", positionID)
-            .AddFilterIf(!string.IsNullOrEmpty(bodyMovement), "bodyMovement_id", "eq", bodyMovementID);
+            .AddFilterIf(!string.IsNullOrEmpty(req.Plane), "plane_id", "eq", planeID)
+            .AddFilterIf(!string.IsNullOrEmpty(req.BodyRegion), "primaryBodyRegion_id", "eq", bodyRegionID)
+            .AddFilterIf(!string.IsNullOrEmpty(req.Position), "position_id", "eq", positionID)
+            .AddFilterIf(!string.IsNullOrEmpty(req.BodyMovement), "bodyMovement_id", "eq", bodyMovementID);
         
         var fields = queryBuilder.Build();
         var filters = queryBuilder.BuildFilters();
@@ -105,16 +99,16 @@ public class ExerciseController : Controller
                 .From<ExerciseDTO>()
                 .Select(fields)
                 .ApplyFilters(filters)
-                .Range(offset, offset + number)
-                .Order(sort, ordering)
+                .Range(req.Offset, req.Offset + req.Number)
+                .Order(req.Sort, ordering)
                 .Get();
             
             var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
             
             var pagination = Pagination.CreateMetadata(
                 903,
-                offset,
-                number,
+                req.Offset,
+                req.Number,
                 exercises.Count()
             );
 
@@ -123,7 +117,7 @@ public class ExerciseController : Controller
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(JSONResponse.Error((ex.Message)));
         }
        
     }
@@ -131,28 +125,25 @@ public class ExerciseController : Controller
     [HttpGet("{exerciseID}")]
     public async Task<IActionResult>  Get(
         string exerciseID,
-        [FromQuery] bool includeDetail = false,
-        [FromQuery] bool includeInstruction = false,
-        [FromQuery] bool includeDescription = false,
-        [FromQuery] bool includePlane = false,
-        [FromQuery] bool includeBodyMovement = false
+        [FromQuery] GetExercisesRequest req
         )
     {
-        if (includeDetail)
+        
+        if (req.IncludeDetail)
         {
-            includeInstruction = true;
-            includeDescription = true;
-            includePlane = true;
-            includeBodyMovement = true;
+            req.IncludeInstruction = true;
+            req.IncludeDescription = true;
+            req.IncludePlane = true;
+            req.IncludeBodyMovement = true;
         }
         
         var options = new ExerciseQueryOptions()
         {
-            IncludeDetail = includeDetail,
-            IncludeInstruction= includeInstruction,
-            IncludeDescription = includeDescription,
-            IncludePlane = includePlane,
-            IncludeBodyMovement = includeBodyMovement
+            IncludeDetail = req.IncludeDetail,
+            IncludeInstruction= req.IncludeInstruction,
+            IncludeDescription = req.IncludeDescription,
+            IncludePlane = req.IncludePlane,
+            IncludeBodyMovement = req.IncludeBodyMovement
         };
 
         var queryBuilder = new SupabaseQueryBuilder()
@@ -197,11 +188,16 @@ public class ExerciseController : Controller
         [FromQuery] bool includeInstruction = false,
         [FromQuery] bool includeDescription = false,
         [FromQuery] bool includePlane = false,
-        [FromQuery] bool includeBodyMovement = false
+        [FromQuery] bool includeBodyMovement = false,
+        [FromQuery] int offset = 0,
+        [FromQuery] int number = 50,
+        [FromQuery] string sort = "name",
+        [FromQuery] string order = "asc"
         )
     {
         // This is required
         if(query.IsNullOrEmpty()) return BadRequest("Query parameter is required.");
+        var ordering = order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
         
         if (includeDetail)
         {
@@ -239,16 +235,25 @@ public class ExerciseController : Controller
                 .From<ExerciseDTO>()
                 .Select(fields)
                 .Filter(x => x.SearchVector, Constants.Operator.FTS, new FullTextSearchConfig(query, "english"))
+                .Range(offset, offset + number)
+                .Order(sort, ordering)
                 .Get();
+     
             
             var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
-            return Ok(exercises);
+            var pagination = Pagination.CreateMetadata(
+                903,
+                offset,
+                number,
+                exercises.Count()
+            );
             
-           
+            return Ok(JSONResponse.Success(exercises, new{pagination}));
+            
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(JSONResponse.Error((ex.Message)));
         }
     }
 }
