@@ -1,5 +1,6 @@
 using DotNetEnv;
 using workoutAPI.Extensions;
+using workoutAPI.Service;
 
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+var key = ApiKeyService.GenerateApiKey();
 
 app.MapControllers();
 app.UseHttpsRedirection();

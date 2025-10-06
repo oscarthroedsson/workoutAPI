@@ -16,4 +16,8 @@
       <_ContentIncludedByDefault Remove="Data\Exercises\Exercise.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Auth\" />
+    </ItemGroup>
+
 </Project>
