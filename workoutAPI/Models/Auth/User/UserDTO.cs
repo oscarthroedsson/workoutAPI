@@ -6,8 +6,7 @@ namespace workoutAPI.Models.User;
 [Table("Users")]
 public class UserDTO:BaseModel
 {
-    [PrimaryKey] 
-    [Column("id")]
+    [PrimaryKey("id")] 
     public string Id { get; set; }
     
     [Column("name")]

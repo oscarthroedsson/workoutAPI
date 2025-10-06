@@ -6,12 +6,11 @@ namespace workoutAPI.Models.ApiKey;
 [Table("ApiKeys")]
 public class ApiKeyDTO :BaseModel
 {
-    [PrimaryKey]
-    [Column("id")]
+    [PrimaryKey("id")]
     public string Id { get; set; }
     
     [Column("user_id")]
-    public string UserId { get; set; }
+    public string UserID { get; set; }
     
     [Column("key")]
     public string Key { get; set; }
