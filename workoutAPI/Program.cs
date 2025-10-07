@@ -1,5 +1,6 @@
 using DotNetEnv;
 using workoutAPI.Extensions;
+using workoutAPI.Middlewear;
 using workoutAPI.Service;
 
 Env.Load();
@@ -21,6 +22,10 @@ await builder.AddSupabaseAsync();
 builder.Services.AddOpenApi();
 var app = builder.Build();
 
+app.UseWhen(
+    context => context.Request.Path.StartsWithSegments("/api/exercise"),
+    appBuilder => appBuilder.UseExerciseMiddleware());
+
 
 
 
@@ -31,7 +36,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-var key = ApiKeyService.GenerateApiKey();
 
 app.MapControllers();
 app.UseHttpsRedirection();

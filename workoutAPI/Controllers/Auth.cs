@@ -56,10 +56,18 @@ public class AuthController : Controller
       });
       if(newApi == null) return BadRequest("ApiKey could not be created");
       
-      
+      var publicUser = new
+      {
+        Id = newUser.Id,
+        Name = newUser.Name,
+        Email = newUser.Email,
+        Tier = newUser.Tier,
+        Provider = newUser.Provider,
+        ProviderID = newUser.ProviderID,
+      };
       return Created($"/api/auth/user/{newUser.Id}", JSONResponse.Success(new
       {
-        user = newUser,
+        user = publicUser,
         apiKey
       }));
     }

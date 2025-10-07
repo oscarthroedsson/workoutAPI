@@ -4,7 +4,6 @@ namespace workoutAPI.Service;
 
 public class ApiKeyService
 {
-
     public static string GenerateApiKey()
     {
         byte[] keyBytes = new byte[32];
@@ -21,4 +20,5 @@ public class ApiKeyService
 
         return base64;
     }
+    
 }
