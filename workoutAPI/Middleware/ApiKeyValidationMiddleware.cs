@@ -3,7 +3,6 @@ using Supabase;
 using workoutAPI.Models;
 using workoutAPI.Models.ApiKey;
 using workoutAPI.Models.User;
-
 namespace workoutAPI.Middlewear;
 
 public class ApiKeyValidationMiddleware
@@ -30,14 +29,14 @@ public class ApiKeyValidationMiddleware
             return; 
         }
         
-        var response = await supabase
+        var apiKeyResponse = await supabase
             .From<ApiKeyDTO>()
             .Select("*")
             .Where(x => x.Key == apiKeyValue)
             .Single();
         
         
-        if (response == null)
+        if (apiKeyResponse == null)
         {
             context.Response.StatusCode = 401;
             await context.Response.WriteAsync(
@@ -46,7 +45,7 @@ public class ApiKeyValidationMiddleware
             return;
         }
         
-        if (!response.IsActive)
+        if (!apiKeyResponse.IsActive)
         {
             context.Response.StatusCode = 403;
             await context.Response.WriteAsync(
@@ -55,10 +54,10 @@ public class ApiKeyValidationMiddleware
             return;
         }
         
-        var user = await supabase.From<UserDTO>().Where(x => x.Id == response.UserID).Single();
+        var user = await supabase.From<UserDTO>().Where(x => x.Id == apiKeyResponse.UserID).Single();
         
         context.Items["User"] = user;
-        context.Items["ApiKey"] = apiKeyValue.ToString();
+        context.Items["ApiKey"] = apiKeyResponse;
         context.Items["Tier"] = user.Tier;
         
         await _next(context);
