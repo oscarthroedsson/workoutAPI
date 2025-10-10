@@ -1,5 +1,6 @@
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
+using workoutAPI.Models.User;
 
 namespace workoutAPI.Models.ApiKey;
 
@@ -33,4 +34,5 @@ public class ApiKeyDTO :BaseModel
     [Column("updated_at")]
     public DateTime UpdatedAt { get; set; }
     
+    public UserDTO? Users { get; set; }
 }
