@@ -38,8 +38,6 @@ public class ExerciseController : Controller
     {
         req.Order ??= "asc";
         req.Sort ??= "name";
-     
-        
         
         var ordering = req.Order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
        
