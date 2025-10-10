@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Microsoft.IdentityModel.Tokens;
 using Supabase;
 using workoutAPI.Models;
 using workoutAPI.Models.ApiKey;
@@ -8,6 +9,7 @@ namespace workoutAPI.Middlewear;
 public class ApiKeyValidationMiddleware
 {
     private readonly RequestDelegate _next;
+
     
     
     public ApiKeyValidationMiddleware(RequestDelegate next)
@@ -17,25 +19,24 @@ public class ApiKeyValidationMiddleware
     
     public async Task InvokeAsync(
         HttpContext context, 
-        Client supabase)
+        Client supabase ,
+        CacheManager cache
+        )
     {
-        
-        if (!context.Request.Headers.TryGetValue("X-API-KEY", out var apiKeyValue))
+        if (
+            !context.Request.Headers.TryGetValue("X-API-KEY", out var apiKeyValue) || 
+            string.IsNullOrWhiteSpace(apiKeyValue)
+            )
         {
             context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/json";
             await context.Response.WriteAsync(
-                JsonSerializer.Serialize(JSONResponse.Error("Missing API key", "MISSING_API_KEY", "Missing API key"))
+                JsonSerializer.Serialize(JSONResponse.Error("Missing API key", "MISSING_API_KEY"))
             );
             return; 
         }
         
-        var apiKeyResponse = await supabase
-            .From<ApiKeyDTO>()
-            .Select("*")
-            .Where(x => x.Key == apiKeyValue)
-            .Single();
-        
-        
+        var apiKeyResponse = await cache.ApiKeys.GetUserApiKeyAsync(apiKeyValue!);
         if (apiKeyResponse == null)
         {
             context.Response.StatusCode = 401;
@@ -54,7 +55,17 @@ public class ApiKeyValidationMiddleware
             return;
         }
         
-        var user = await supabase.From<UserDTO>().Where(x => x.Id == apiKeyResponse.UserID).Single();
+        var user = apiKeyResponse.Users;
+        
+        if (user == null)
+        {
+            context.Response.StatusCode = 500;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(JSONResponse.Error("User data not found", "USER_NOT_FOUND"))
+            );
+            return;
+        }
         
         context.Items["User"] = user;
         context.Items["ApiKey"] = apiKeyResponse;
