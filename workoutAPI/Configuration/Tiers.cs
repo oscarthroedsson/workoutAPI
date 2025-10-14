@@ -2,10 +2,10 @@ namespace workoutAPI.Configuration;
 
 public static class Tiers  // ← Lägg till 'static' här!
 {
-    public const string FREE = "FREE";
-    public const string HOBBY = "HOBBY";
-    public const string STARTUP = "STARTUP";
-    public const string BUSINESS = "BUSINESS";
+    public const string FREE = "free";
+    public const string HOBBY = "hobby";
+    public const string STARTUP = "startup";
+    public const string BUSINESS = "busniess";
     
     // Points Limits (monthly quota)
     public const int FreeLimit = 50;

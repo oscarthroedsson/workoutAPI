@@ -2,19 +2,11 @@ using workoutAPI.Headers;
 
 public static class HeaderConstants
 {
+    public const string QuotaRequested = "X-Quota-Requested";
+    public const string QuotaUsed = "X-Quota-Used";
     public const string QuotaExceeded = "X-Quota-Exceeded";
-    public const string OveragePoints = "X-Overage-Points";
-    public const string OverageCost = "X-Overage-Cost";
-    public const string WithinLimit = "X-Within-Limit";
-    public const string PointsRequested = "X-Points-Requested";
-
-    public static string GetHeaderName(HeaderKey key) => key switch
-    {
-        HeaderKey.QuotaExceeded => QuotaExceeded,
-        HeaderKey.OveragePoints => OveragePoints,
-        HeaderKey.OverageCost => OverageCost,
-        HeaderKey.WithinLimit => WithinLimit,
-        HeaderKey.PointsRequested => PointsRequested,
-        _ => throw new ArgumentOutOfRangeException(nameof(key), $"No header defined for {key}")
-    };
+    public const string OveragePoints = "X-Quota-Overage";
+    public const string OverageCost = "X-Quota-Overage-Cost";
+    public const string RetryAfter = "X-Retry-After";
+    
 }
