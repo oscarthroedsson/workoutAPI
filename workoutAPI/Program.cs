@@ -3,10 +3,13 @@ using workoutAPI.Extensions;
 using workoutAPI.Middlewear;
 using EasyCaching.InMemory;
 using workoutAPI.Service;
+using workoutAPI.Service.Cache;
 
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddEnvironmentVariables(); // make it possible to get env variables
+builder.Configuration.AddEnvironmentVariables();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<PointCalculatorService>();
 builder.Services.AddControllers(); // add controllers
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -34,12 +37,17 @@ builder.Services.AddEasyCaching(options =>
     }, "default"); 
 });
 
+
+builder.Services.AddSingleton<ApiKeyService>(); 
 builder.Services.AddSingleton<StaticDataCacheService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<HeaderManager>();
 builder.Services.AddSingleton<QuotaService>();
 builder.Services.AddSingleton<BillingService>();
 builder.Services.AddSingleton<CacheManager>();
+builder.Services.AddSingleton<RateLimiterCache>();
+
+
 
 await builder.AddSupabaseAsync();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -55,11 +63,7 @@ app.UseWhen(
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    var cacheService = scope.ServiceProvider.GetRequiredService<StaticDataCacheService>();
-    await cacheService.PreloadCacheAsync();
-}
+
 
 app.MapControllers();
 app.UseHttpsRedirection();
