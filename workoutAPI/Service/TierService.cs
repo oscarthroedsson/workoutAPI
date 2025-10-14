@@ -4,9 +4,43 @@ namespace workoutAPI.Service;
 
 public static class TierService
 {
+    
+    public static Dictionary<string, int> GetAllTierLimits()
+    {
+        return new Dictionary<string, int>
+        {
+            { Tiers.FREE, Tiers.FreeLimit },
+            { Tiers.HOBBY, Tiers.HobbyLimit },
+            { Tiers.STARTUP, Tiers.StartUpLimit },
+            { Tiers.BUSINESS, Tiers.BusniessLimit }
+        };
+    }
+
+    public static Dictionary<string, int> GetAllTierRateLimits()
+    {
+        return new Dictionary<string, int>
+        {
+            { Tiers.FREE, Tiers.FreeMaxReqPerSecond },
+            { Tiers.HOBBY, Tiers.HobbyMaxReqPerSecond },
+            { Tiers.STARTUP, Tiers.StartUpMaxReqPerSecond },
+            { Tiers.BUSINESS, Tiers.BusniessMaxReqPerSecond }
+        };
+    }
+
+    public static int GetTierRateLimit(string tier)
+    {
+        return tier.ToLowerInvariant() switch
+        {
+            Tiers.FREE => Tiers.FreeMaxReqPerSecond,
+            Tiers.HOBBY => Tiers.HobbyMaxReqPerSecond,
+            Tiers.STARTUP => Tiers.StartUpMaxReqPerSecond,
+            Tiers.BUSINESS => Tiers.BusniessMaxReqPerSecond,
+            _ => 0
+        };
+    }
     public static int GetTierLimit(string tier)
     {
-        return tier.ToUpperInvariant() switch
+        return tier.ToLowerInvariant() switch
         {
             Tiers.FREE => Tiers.FreeLimit,
             Tiers.HOBBY => Tiers.HobbyLimit,
@@ -56,15 +90,7 @@ public static class TierService
         return true;
     }
     
-
-    public static bool IsWithinQuota(string tier, int currentUsage, int requestPoints)
-    {
-        var limit = GetTierLimit(tier);
-        return (currentUsage + requestPoints) <= limit;
-    }
-
-    
-    public static bool ShouldBeBilled(string tier, int currentUsage, int requestPoints)
+    public static bool ShouldBeBilled(string tier, int currentUsage, decimal requestPoints)
     {
         var limit = GetTierLimit(tier);
         if(tier == Tiers.FREE) return false;
@@ -72,12 +98,12 @@ public static class TierService
         return currentUsage + requestPoints > limit;
     }
     
-    public static int GetOveragePoints(int totalPointsUsed, int includedPoints)
+    public static decimal GetOveragePoints(decimal totalPointsUsed, decimal includedPoints)
     {
         return Math.Max(0, totalPointsUsed - includedPoints);
     }
     
-    public static decimal CalculateOverageCost(string tier, int overagePoints)
+    public static decimal CalculateOverageCost(string tier, decimal overagePoints)
     {
         if (tier.ToLower() == Tiers.FREE.ToLower()) 
             return 0m;

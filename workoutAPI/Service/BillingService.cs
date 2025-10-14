@@ -67,6 +67,7 @@ public class BillingService
             billingRecord.TotalPointsUsed, 
             billingRecord.IncludedPoints
         );
+ 
         
         billingRecord.OverageCost = TierService.CalculateOverageCost(
             tier, 

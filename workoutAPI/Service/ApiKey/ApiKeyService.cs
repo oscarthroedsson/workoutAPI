@@ -28,6 +28,21 @@ public class ApiKeyService
         return base64;
     }
     
+    public async Task<List<ApiKeyDTO>> GetApiKeysForRecentDays()
+    {
+        var startDate = DateTime.UtcNow.Date.AddDays(-2);
+
+        var response = await _supabase
+            .From<ApiKeyDTO>()
+            .Where(x => x.LastResetDate >= startDate)
+            .Get();
+
+        if (response.Models == null || !response.Models.Any())
+            return new List<ApiKeyDTO>();
+
+        return response.Models.ToList();
+    }
+    
     public async Task<bool> RevokeApiKey(string apiKeyId)
     {
         var response = await _supabase
@@ -51,6 +66,37 @@ public class ApiKeyService
     }
     
     
+    public async Task<ApiKeyUserInfo?> GetUserInfoByApiKeyAsync(string apiKey)
+    {
+        try
+        {
+            var response = await _supabase
+                .From<ApiKeyUserInfo>()
+                .Where(x => x.ApiKey == apiKey && x.IsActive == true)
+                .Single();
 
-    
+            return response;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    public async Task<List<ApiKeyUserInfo>> GetAllApiKeysWithUserInfoAsync()
+    {
+        try
+        {
+            var response = await _supabase
+                .From<ApiKeyUserInfo>()
+                .Get();
+
+            return response.Models;
+        }
+        catch (Exception ex)
+        {
+          
+            return new List<ApiKeyUserInfo>();
+        }
+    }
 }

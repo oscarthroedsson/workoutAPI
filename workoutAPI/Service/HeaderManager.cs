@@ -23,10 +23,11 @@ public class HeaderManager
         return key switch
         {
             HeaderKey.QuotaExceeded => HeaderConstants.QuotaExceeded,
+            HeaderKey.QuotaRequested => HeaderConstants.QuotaRequested,
             HeaderKey.OveragePoints => HeaderConstants.OveragePoints,
             HeaderKey.OverageCost => HeaderConstants.OverageCost,
-            HeaderKey.WithinLimit => HeaderConstants.WithinLimit,
-            HeaderKey.PointsRequested => HeaderConstants.PointsRequested,
+            HeaderKey.QuotaUsed => HeaderConstants.QuotaUsed,
+            HeaderKey.RetryAfter => HeaderConstants.RetryAfter,
             _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
         };
     }
@@ -58,18 +59,33 @@ public class HeaderManager
         }
     }
 
-    public void SetQuotaExceeded(bool exceeded) =>
-        AddHeader(HeaderKey.QuotaExceeded, exceeded.ToString().ToLowerInvariant());
 
-    public void SetOveragePoints(int points) =>
-        AddHeader(HeaderKey.OveragePoints, points.ToString());
-
-    public void SetOverageCost(decimal cost) =>
-        AddHeader(HeaderKey.OverageCost, $"${cost:F2}");
-
-    public void SetWithinLimit(bool withinLimit) =>
-        AddHeader(HeaderKey.WithinLimit, withinLimit.ToString().ToLowerInvariant());
-
-    public void SetPointsRequested(int points) =>
-        AddHeader(HeaderKey.PointsRequested, points.ToString());
+    public void IncrementHeader(HeaderKey key, decimal valueToAdd)
+    {
+        try
+        {
+            var context = GetContext();
+            if (context.Response.HasStarted) return;
+        
+            var headerName = GetHeaderName(key);
+        
+            // Hämta nuvarande värde
+            decimal currentValue = 0m;
+            if (context.Response.Headers.TryGetValue(headerName, out var existingValue))
+            {
+                decimal.TryParse(existingValue, out currentValue);
+            }
+        
+            // Lägg ihop
+            var newValue = currentValue + valueToAdd;
+        
+            // Sätt uppdaterat värde
+            context.Response.Headers[headerName] = newValue.ToString();
+        }
+        catch (ObjectDisposedException)
+        {
+            // Context disposed, silently ignore
+        }
+    }
+ 
 }
