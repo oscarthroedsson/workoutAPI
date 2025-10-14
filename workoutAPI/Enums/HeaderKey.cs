@@ -5,7 +5,9 @@ namespace workoutAPI.Headers
         QuotaExceeded,
         OveragePoints,
         OverageCost,
-        WithinLimit,
-        PointsRequested
+        QuotaRequested,
+        RetryAfter,
+        QuotaUsed
+        
     }
 }
