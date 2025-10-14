@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Supabase.Postgrest;
+using workoutAPI.Headers;
 using workoutAPI.Mappers;
 using workoutAPI.Models;
 using workoutAPI.Models.BodyRegions;
@@ -9,6 +10,7 @@ using workoutAPI.Models.Exercise;
 using workoutAPI.Models.Pagination;
 using workoutAPI.Models.Position;
 using workoutAPI.Models.Requests;
+using workoutAPI.Service;
 using Client = Supabase.Client;
 using workoutAPI.Utilities;
 using Constants = Supabase.Postgrest.Constants;
@@ -19,10 +21,13 @@ namespace workoutAPI.Controllers;
 public class ExerciseController : Controller
 {
     private readonly Client _supabase;
-
-    public ExerciseController(Client supabase)
+    private readonly PointCalculatorService _pointCalculatorService;
+    private readonly HeaderManager _headerManager;
+    public ExerciseController(Client supabase, PointCalculatorService pointCalculatorService, HeaderManager headerManager)
     {
         _supabase = supabase;
+        _pointCalculatorService = pointCalculatorService;
+        _headerManager = headerManager;
     }
     
     [HttpGet("health")]
@@ -101,15 +106,17 @@ public class ExerciseController : Controller
                 .Get();
             
             var exercises = response.Models.Select(ExerciseMapper.MapFromTable);
-            
             var pagination = Pagination.CreateMetadata(
                 903,
                 req.Offset,
                 req.Number,
                 exercises.Count()
             );
-
-           
+            
+            decimal arrayPoints = _pointCalculatorService.CalculateListCost(exercises);
+            _headerManager.IncrementHeader(HeaderKey.QuotaRequested, arrayPoints);
+            
+            
             return Ok(JSONResponse.Success(exercises, new{pagination}));
         }
         catch (Exception ex)
