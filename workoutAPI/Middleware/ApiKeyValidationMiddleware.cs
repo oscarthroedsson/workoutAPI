@@ -9,8 +9,6 @@ namespace workoutAPI.Middlewear;
 public class ApiKeyValidationMiddleware
 {
     private readonly RequestDelegate _next;
-
-    
     
     public ApiKeyValidationMiddleware(RequestDelegate next)
     {
