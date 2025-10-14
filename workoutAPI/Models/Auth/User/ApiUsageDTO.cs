@@ -20,7 +20,7 @@ public class ApiUsageDTO : BaseModel
     public string Endpoint { get; set; }
     
     [Column("point_costs")]
-    public int PointCost { get; set; }
+    public decimal PointCost { get; set; }
     
     [Column("created_at")]
 

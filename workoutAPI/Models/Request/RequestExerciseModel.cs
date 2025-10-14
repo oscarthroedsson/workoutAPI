@@ -24,7 +24,7 @@ namespace workoutAPI.Models.Requests
         public int Offset { get; set; } = 0;
         
         [Range(1, 100, ErrorMessage = "Number must be between 1 and 100")]
-        public int Number { get; set; } = 50;
+        public int Number { get; set; } = 20;
         
         [RegularExpression("^(name|created_at|updated_at)$", 
             ErrorMessage = "Sort must be name, created_at, or updated_at")]

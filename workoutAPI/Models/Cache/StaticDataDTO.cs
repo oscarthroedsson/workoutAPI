@@ -1,3 +1,4 @@
+using workoutAPI.Models.ApiKey;
 using workoutAPI.Models.BodyRegions;
 using workoutAPI.Models.Position;
 
@@ -9,6 +10,8 @@ public class StaticDataDTO
     public List<BodyRegionsDTO> BodyRegions { get; set; } = new();
     public List<PositionDTO> Positions { get; set; } = new();
     public List<BodyMovementDTO> BodyMovements { get; set; } = new();
+    
+    public List<ApiKeyDTO> ApiKeys { get; set; } = new();
     
     public int? GetIdByCode<T>(string? code) where T : class
     {
@@ -36,7 +39,6 @@ public class StaticDataDTO
         var idProperty = item.GetType().GetProperty("Id");
         return idProperty?.GetValue(item) as int?;
     }
-    
     public (int? planeId, int? bodyRegionId, int? positionId, int? bodyMovementId) 
         GetAllIds(string? planeCode, string? bodyRegionCode, string? positionCode, string? bodyMovementCode)
     {
@@ -46,5 +48,12 @@ public class StaticDataDTO
             GetIdByCode<PositionDTO>(positionCode),
             GetIdByCode<BodyMovementDTO>(bodyMovementCode)
         );
+    }
+    public ApiKeyDTO? GetApiKey(string apiKey)
+    {
+        if (string.IsNullOrWhiteSpace(apiKey)) return null;
+
+        return ApiKeys.FirstOrDefault(k =>
+            k.Key.Equals(apiKey, StringComparison.OrdinalIgnoreCase));
     }
 }

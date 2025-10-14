@@ -28,7 +28,7 @@ public class BillingRecordDTO : BaseModel
     public int IncludedPoints { get; set; }
     
     [Column("overage_points")]
-    public int OveragePoints { get; set; }
+    public decimal OveragePoints { get; set; }
     
     [Column("base_subscription_cost")]
     public decimal BaseSubscriptionCost { get; set; }
