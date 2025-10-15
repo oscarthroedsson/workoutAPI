@@ -5,7 +5,7 @@ public static class Tiers  // ← Lägg till 'static' här!
     public const string FREE = "free";
     public const string HOBBY = "hobby";
     public const string STARTUP = "startup";
-    public const string BUSINESS = "busniess";
+    public const string BUSINESS = "business";
     
     // Points Limits (monthly quota)
     public const int FreeLimit = 50;

@@ -28,12 +28,14 @@ public class BodyRegionController : Controller
     
     [HttpGet("all")]
     public async Task<IActionResult> GetAll(
-        [FromQuery] bool includeMuscles = false
+        [FromQuery] bool includeMuscles = false,
+        [FromQuery] bool includeExerciseCount = false
         )
     {
         var options = new BodyRegionQueryOptions
         {
-            IncludeMuscles = includeMuscles
+            IncludeMuscles = includeMuscles,
+            IncludeExerciseCount = includeExerciseCount
         };
     
         var query = QueryHelpers.DefaultQueryBodyRegion(options).Build();

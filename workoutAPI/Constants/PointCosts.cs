@@ -1,10 +1,4 @@
 namespace workoutAPI.Configuration;
-
-
-
-
-
-
 public class PointCosts
 {
     // Base costs

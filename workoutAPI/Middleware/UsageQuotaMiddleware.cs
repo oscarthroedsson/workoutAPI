@@ -86,6 +86,7 @@ public class UsageQuotaMiddleware
         try
         {
             await _next(context);
+            var path = context.Request.Path;
             
             // 🍒 Fire-and-forget: Run both operations in background without blocking response
             if (context.Response.StatusCode < 400)
@@ -110,7 +111,8 @@ public class UsageQuotaMiddleware
                     );
                 }
                 
-                
+                Console.WriteLine($"newTotal: {newTotal}");
+                Console.WriteLine($"{requestPoints}");
                 _ = Task.Run(async () =>
                 {
                     try
@@ -118,14 +120,14 @@ public class UsageQuotaMiddleware
                         await Task.WhenAll(
                             _supabase.From<ApiKeyDTO>()
                                 .Where(x => x.Key == apiKeyDto.Key)
-                                .Set(x => (int)x.ReqToday, newTotal)
+                                .Set(x => x.ReqToday, newTotal)
                                 .Update(),
                 
                             _supabase.From<ApiUsageDTO>().Insert(
                                 new ApiUsageDTO
                                 {
                                     ApiKeyId = apiKeyDto.Id,
-                                    Endpoint = context.Request.Path,
+                                    Endpoint = path,
                                     PointCost = requestPoints,
                                 }
                             )
@@ -145,7 +147,6 @@ public class UsageQuotaMiddleware
             throw;
         }
         
-
         // Persist usage
         _ = Task.Run(async () =>
         {
@@ -158,6 +159,7 @@ public class UsageQuotaMiddleware
                 Console.WriteLine($"❌ Failed to writeback: {ex.Message}");
             }
         });
+        
         apiKeyDto.ReqToday = newTotal;
     }
 

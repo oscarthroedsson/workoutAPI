@@ -50,8 +50,6 @@ public class PointCalculatorService
     private decimal CalculateParameterCost(string paramName, string paramValue)
     {
         if (!_costsLookup.TryGetValue(paramName.ToLower(), out var cost) || cost == 0) return 0;
-        
-      
    
         // Check if queryParams exist and if the value match the enums
         if (

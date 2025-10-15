@@ -79,6 +79,7 @@ public class ApiKeyService
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"⏰ {ex.Message}");
             return null;
         }
     }

@@ -16,6 +16,7 @@ public class PointsCalculationMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         decimal points = _calculator.CalculateRequestCost(context);
+        Console.WriteLine($"POINTS: {points}"); // should be 1.25
         context.Items["RequestPoints"] = points;
         
         await _next(context);

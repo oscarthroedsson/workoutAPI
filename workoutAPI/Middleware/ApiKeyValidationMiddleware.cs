@@ -64,10 +64,11 @@ public class ApiKeyValidationMiddleware
             );
             return;
         }
-        
+        Console.WriteLine($"🥅 total points: {apiKeyResponse.ReqToday}");
         context.Items["User"] = user;
         context.Items["ApiKey"] = apiKeyResponse;
         context.Items["Tier"] = user.Tier;
+        
         
         await _next(context);
     }

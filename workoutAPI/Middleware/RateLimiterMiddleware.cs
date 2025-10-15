@@ -37,7 +37,7 @@ namespace workoutAPI.Middlewear
                 ));
                 return;
             }
-    
+
             // Get user info → Cache → DB
             var userInfo = await _apiKeyService.GetUserInfoByApiKeyAsync(apiKey);
     
@@ -52,7 +52,6 @@ namespace workoutAPI.Middlewear
             }
 
             var tier = userInfo.Tier;
-
             // Validate tier
             if (!TierService.IsValidTier(tier))
             {
@@ -70,6 +69,10 @@ namespace workoutAPI.Middlewear
             // Update rate limiter
             var rateEntry = await _rateLimiterCache.Upsert(apiKey, tier);
 
+            Console.WriteLine($"Amount: {rateEntry.Amount}");
+            Console.WriteLine($"Expiry: {rateEntry.Expiry}");
+            Console.WriteLine($"Limit: {rateLimit}");
+            
             // Validate rate limit
             if (rateEntry.Amount > rateLimit)
             {

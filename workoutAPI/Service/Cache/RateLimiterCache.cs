@@ -23,7 +23,7 @@ public class RateLimiterCache
     public async Task<RateLimitEntry> Upsert(string apiKey, string tier)
     {
         if (!TierService.IsValidTier(tier.ToUpperInvariant())) throw new ArgumentException($"Unknown tier: {tier}");
-        Console.WriteLine($"[RateLimiterCache] Registering request for apiKey: {apiKey}, tier: {tier}");
+        
         var tierRateLimit = TierService.GetTierRateLimit(tier);
         
         
@@ -32,7 +32,7 @@ public class RateLimiterCache
             addValueFactory: k => new RateLimitEntry
             {
                 Amount = 1,
-                Expiry = DateTime.UtcNow.AddSeconds(tierRateLimit)
+                Expiry = DateTime.UtcNow.AddSeconds(1)
             },
             updateValueFactory: (k, existing) =>
             {
@@ -40,7 +40,7 @@ public class RateLimiterCache
                 if (existing.Expiry < DateTime.UtcNow)
                 {
                     existing.Amount = 1;
-                    existing.Expiry = DateTime.UtcNow.AddSeconds(tierRateLimit);
+                    existing.Expiry = DateTime.UtcNow.AddSeconds(1);
                 }
                 else
                 {

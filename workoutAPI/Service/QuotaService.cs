@@ -21,7 +21,7 @@ namespace workoutAPI.Service
         public async Task<decimal> EnsurePointsCachedAsync(string apiKey, Client supabase)
         {
             var cacheKey = CacheKey(apiKey);
-            var cacheVal = await _cache.GetAsync<decimal>(cacheKey);  // ✅ decimal
+            var cacheVal = await _cache.GetAsync<decimal>(cacheKey);
             if (cacheVal.HasValue) return cacheVal.Value;
 
             var sem = GetKeyLock(cacheKey);
@@ -36,8 +36,8 @@ namespace workoutAPI.Service
                     .Where(x => x.Key == apiKey)
                     .Get();
 
-                decimal value = record.Model.ReqToday;  // ✅ decimal
-
+                decimal value = record.Model.ReqToday;
+                
                 var ttl = GetDefaultTtl();
                 await _cache.SetAsync(cacheKey, value, ttl);
 
@@ -90,17 +90,14 @@ namespace workoutAPI.Service
         public async Task WriteBackAsync(string apiKey, Client supabase)
         {
             var cacheKey = CacheKey(apiKey);
-            var cacheResult = await _cache.GetAsync<decimal>(cacheKey);      // ✅ decimal
-            var cur = cacheResult.HasValue ? cacheResult.Value : 0m;         // ✅ 0m
-
-            // Convert to int for database
-            var pointsAsInt = (int)Math.Ceiling(cur);
+            var cacheResult = await _cache.GetAsync<decimal>(cacheKey); 
+            var cur = cacheResult.HasValue ? cacheResult.Value : 0m;        
             
             await supabase
                 .From<ApiKeyDTO>()
                 .Where(x => x.Key == apiKey)
-                .Set(x => x.ReqToday, pointsAsInt)
-                .Update();  // ✅ Changed from .Get() to .Update()
+                .Set(x => x.ReqToday, cur)
+                .Update(); 
         }
 
         public async Task SetQuotaAsync(string apiKey, decimal quota)  // ✅ decimal parameter

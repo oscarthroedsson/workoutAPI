@@ -24,8 +24,8 @@ public class QueryHelpers
     {
         return new SupabaseQueryBuilder()
             .StartWith("id", "code", "name", "latinName")
-            .AddIf(options.IncludeMuscles, " muscle_regions:muscle_regions_region_id_fkey(id, muscle_id, muscles:muscle_regions_muscle_id_fkey(id, code, name, latinName))");
-
+            .AddIf(options.IncludeMuscles, " muscle_regions:muscle_regions_region_id_fkey(id, muscle_id, muscles:muscle_regions_muscle_id_fkey(id, code, name, latinName))")
+            .AddIf(options.IncludeExerciseCount,"exercises:exercises_primaryBodyRegion_id_fkey(count)");
     }
 
     public static List<string> FilterValidQueryParams(params string[] queryParams)

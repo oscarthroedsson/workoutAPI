@@ -19,7 +19,7 @@ public class ApiKeyUserInfo : BaseModel
     public bool IsActive { get; set; }
     
     [Column("req_today")]
-    public int ReqToday { get; set; }
+    public decimal ReqToday { get; set; }
     
     [Column("last_reset_date")]
     public string LastResetDate { get; set; }
