@@ -22,12 +22,32 @@ public class HeaderManager
     {
         return key switch
         {
-            HeaderKey.QuotaExceeded => HeaderConstants.QuotaExceeded,
-            HeaderKey.QuotaRequested => HeaderConstants.QuotaRequested,
-            HeaderKey.OveragePoints => HeaderConstants.OveragePoints,
-            HeaderKey.OverageCost => HeaderConstants.OverageCost,
-            HeaderKey.QuotaUsed => HeaderConstants.QuotaUsed,
+            // Usage (Period-level)
+            HeaderKey.UsageLimit => HeaderConstants.UsageLimit,
+            HeaderKey.UsageTotal => HeaderConstants.UsageTotal,
+            HeaderKey.UsageIncluded => HeaderConstants.UsageIncluded,
+            HeaderKey.UsageOverage => HeaderConstants.UsageOverage,
+            
+            // Request (Request-level)
+            HeaderKey.RequestCost => HeaderConstants.RequestCost,
+            HeaderKey.RequestOverage => HeaderConstants.RequestOverage,
+            
+            // Billing
+            HeaderKey.BillingOverageCost => HeaderConstants.BillingOverageCost,
+            HeaderKey.BillingTotal => HeaderConstants.BillingTotal,
+            HeaderKey.BillingCurrency => HeaderConstants.BillingCurrency,
+            
+            // Status
+            HeaderKey.WithinLimit => HeaderConstants.WithinLimit,
+            HeaderKey.SubscriptionTier => HeaderConstants.SubscriptionTier,
+            HeaderKey.SubscriptionStatus => HeaderConstants.SubscriptionStatus,
+            
+            // Rate Limiting
+            HeaderKey.RateLimitLimit => HeaderConstants.RateLimitLimit,
+            HeaderKey.RateLimitRemaining => HeaderConstants.RateLimitRemaining,
+            HeaderKey.RateLimitReset => HeaderConstants.RateLimitReset,
             HeaderKey.RetryAfter => HeaderConstants.RetryAfter,
+            
             _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
         };
     }
@@ -38,7 +58,6 @@ public class HeaderManager
         {
             var context = GetContext();
             
-            // Don't add headers if response has already started
             if (context.Response.HasStarted)
                 return;
             
@@ -47,7 +66,6 @@ public class HeaderManager
         catch (ObjectDisposedException)
         {
             // Context was disposed, silently ignore
-            // This can happen if middleware tries to add headers after response is sent
         }
     }
 
@@ -59,7 +77,6 @@ public class HeaderManager
         }
     }
 
-
     public void IncrementHeader(HeaderKey key, decimal valueToAdd)
     {
         try
@@ -69,17 +86,13 @@ public class HeaderManager
         
             var headerName = GetHeaderName(key);
         
-            // Hämta nuvarande värde
             decimal currentValue = 0m;
             if (context.Response.Headers.TryGetValue(headerName, out var existingValue))
             {
                 decimal.TryParse(existingValue, out currentValue);
             }
         
-            // Lägg ihop
             var newValue = currentValue + valueToAdd;
-        
-            // Sätt uppdaterat värde
             context.Response.Headers[headerName] = newValue.ToString();
         }
         catch (ObjectDisposedException)
@@ -87,5 +100,4 @@ public class HeaderManager
             // Context disposed, silently ignore
         }
     }
- 
 }
