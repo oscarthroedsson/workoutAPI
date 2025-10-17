@@ -28,20 +28,12 @@ public class UsageQuotaMiddleware
 
     public async Task InvokeAsync(HttpContext context, BillingService billingService)
     {
-        var headerManager = context.RequestServices.GetRequiredService<HeaderManager>();
         var apiKeyDto = context.Items["ApiKey"] as ApiKeyDTO;
         var userDTO = context.Items["User"] as UserDTO;
         var requestPoints = (decimal)(context.Items["RequestPoints"] ?? 0m);
+        var currentPeriod = DateTime.UtcNow;
         
-        // HEADERS 
-        decimal overagePoints = 0.00m;
-        decimal overageCost = 0.00m;
-        
-        var shouldBeBilled = false;
-        var quotaExceed = false;
-        bool quotaExceeded = false;
-        var currentPeriod = DateTime.UtcNow.ToString("yyyy-MM");
-
+        // break → userdTO or apiKey is missing
         if (apiKeyDto == null || userDTO == null)
         {
             context.Response.StatusCode = 500;
@@ -49,7 +41,6 @@ public class UsageQuotaMiddleware
             await context.Response.WriteAsync(JsonSerializer.Serialize(JSONResponse.Error("Missing authentication data")));
             return;
         }
-
         var tier = userDTO.Tier.ToLowerInvariant();
         var apiKeyString = apiKeyDto.Key;
 
@@ -80,39 +71,17 @@ public class UsageQuotaMiddleware
             return;
         }
         
-        headerManager.AddHeader(HeaderKey.QuotaRequested, requestPoints.ToString());
-        headerManager.AddHeader(HeaderKey.QuotaUsed, newTotal.ToString());
+        context.Items["Tier"] = tier;
         
         try
         {
+            // Nedds in next middleware → BillingMiddleware
+            context.Items["TotalPointsUsed"] = newTotal;
+            
             await _next(context);
             var path = context.Request.Path;
             
             // 🍒 Fire-and-forget: Run both operations in background without blocking response
-            if (context.Response.StatusCode < 400)
-            { 
-                var billingRecord = await billingService.GetOrCreateBillingRecord(userDTO, apiKeyDto, currentPeriod);
-                if (TierService.ShouldBeBilled(tier, billingRecord.TotalPointsUsed, requestPoints))
-                {
-                    overagePoints = TierService.GetOveragePoints(billingRecord.TotalPointsUsed + requestPoints, billingRecord.IncludedPoints);
-                    overageCost = TierService.CalculateOverageCost(tier, overagePoints);
-            
-                    headerManager.AddHeaders(
-                        (HeaderKey.QuotaExceeded, "true"),
-                        (HeaderKey.OveragePoints, overagePoints.ToString()),
-                        (HeaderKey.OverageCost, $"${overageCost:F2}")
-                    );
-                }
-                else
-                {
-                    headerManager.AddHeaders(
-                        (HeaderKey.QuotaExceeded, "false"),
-                        (HeaderKey.OverageCost, "0.00")
-                    );
-                }
-                
-                Console.WriteLine($"newTotal: {newTotal}");
-                Console.WriteLine($"{requestPoints}");
                 _ = Task.Run(async () =>
                 {
                     try
@@ -139,7 +108,7 @@ public class UsageQuotaMiddleware
                         Console.WriteLine($"❌ Failed to persist usage data: {ex.Message}");
                     }
                 });
-            }
+            
         }
         catch (Exception)
         {
@@ -169,7 +138,6 @@ public class UsageQuotaMiddleware
         var lastReset = apiKeyDto.LastResetDate.Date;
         return now > lastReset;
     }
-
     
     private async Task ResetUsage(ApiKeyDTO apiKeyDto)
     {

@@ -22,7 +22,7 @@ public class ApiKeyDTO :BaseModel
     [Column("is_active")]
     public bool IsActive { get; set; }
     
-    [Column("req_today")]
+    [Column("points_today")]
     public decimal ReqToday { get; set; }
     
     [Column("last_reset_date")]

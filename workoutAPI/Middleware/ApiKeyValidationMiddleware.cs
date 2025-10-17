@@ -1,9 +1,8 @@
 using System.Text.Json;
-using Microsoft.IdentityModel.Tokens;
 using Supabase;
+using workoutAPI.Configuration;
+using workoutAPI.Constants;
 using workoutAPI.Models;
-using workoutAPI.Models.ApiKey;
-using workoutAPI.Models.User;
 namespace workoutAPI.Middlewear;
 
 public class ApiKeyValidationMiddleware
@@ -64,6 +63,46 @@ public class ApiKeyValidationMiddleware
             );
             return;
         }
+        
+        if (user.SubscriptionStatus == SubscriptionStatus.Canceled && user.Tier != "free")
+        {
+            context.Response.StatusCode = 403;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(JSONResponse.Error(
+                    "Subscription canceled. Please reactivate to continue.",
+                    "SUBSCRIPTION_CANCELED"
+                ))
+            );
+            return;
+        }
+        
+        if (user.SubscriptionStatus == SubscriptionStatus.PastDue)
+        {
+            context.Response.StatusCode = 402;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(JSONResponse.Error(
+                    "Your payment is passed due. Please update your payment method.",
+                    "PAYMENT_REQUIRED"
+                ))
+            );
+            return;
+        }
+        
+        if (user.SubscriptionStatus == SubscriptionStatus.Unpaid && user.Tier != "free")
+        {
+            context.Response.StatusCode = 403;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(
+                JsonSerializer.Serialize(JSONResponse.Error(
+                    "Subscription unpaid. Please update payment method.",
+                    "SUBSCRIPTION_UNPAID"
+                ))
+            );
+            return;
+        }
+        
         Console.WriteLine($"🥅 total points: {apiKeyResponse.ReqToday}");
         context.Items["User"] = user;
         context.Items["ApiKey"] = apiKeyResponse;

@@ -73,7 +73,6 @@ namespace workoutAPI.Middlewear
             Console.WriteLine($"Expiry: {rateEntry.Expiry}");
             Console.WriteLine($"Limit: {rateLimit}");
             
-            // Validate rate limit
             if (rateEntry.Amount > rateLimit)
             {
                 context.Response.StatusCode = StatusCodes.Status429TooManyRequests;

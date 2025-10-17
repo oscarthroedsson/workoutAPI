@@ -22,7 +22,7 @@ public class BillingRecordDTO : BaseModel
     public int TotalRequests { get; set; }
     
     [Column("total_points_used")]
-    public int TotalPointsUsed { get; set; }
+    public decimal TotalPointsUsed { get; set; }
     
     [Column("included_points")]
     public int IncludedPoints { get; set; }

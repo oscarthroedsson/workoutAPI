@@ -13,7 +13,7 @@ using workoutAPI.Models.Requests;
 using workoutAPI.Service;
 using Client = Supabase.Client;
 using workoutAPI.Utilities;
-using Constants = Supabase.Postgrest.Constants;
+
 
 namespace workoutAPI.Controllers;
 
@@ -44,7 +44,7 @@ public class ExerciseController : Controller
         req.Order ??= "asc";
         req.Sort ??= "name";
         
-        var ordering = req.Order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
+        var ordering = req.Order.ToLower() == "desc" ? Supabase.Postgrest.Constants.Ordering.Descending : Supabase.Postgrest.Constants.Ordering.Ascending;
        
         // Will get the IDs so we can filter the query
         var tasks = new[]
@@ -112,10 +112,6 @@ public class ExerciseController : Controller
                 req.Number,
                 exercises.Count()
             );
-            
-            decimal arrayPoints = _pointCalculatorService.CalculateListCost(exercises);
-            _headerManager.IncrementHeader(HeaderKey.QuotaRequested, arrayPoints);
-            
             
             return Ok(JSONResponse.Success(exercises, new{pagination}));
         }
@@ -201,7 +197,7 @@ public class ExerciseController : Controller
     {
         // This is required
         if(query.IsNullOrEmpty()) return BadRequest("Query parameter is required.");
-        var ordering = order.ToLower() == "desc" ? Constants.Ordering.Descending : Constants.Ordering.Ascending;
+        var ordering = order.ToLower() == "desc" ? Supabase.Postgrest.Constants.Ordering.Descending : Supabase.Postgrest.Constants.Ordering.Ascending;
         
         if (includeDetail)
         {
@@ -238,7 +234,7 @@ public class ExerciseController : Controller
             var response = await _supabase
                 .From<ExerciseDTO>()
                 .Select(fields)
-                .Filter(x => x.SearchVector, Constants.Operator.FTS, new FullTextSearchConfig(query, "english"))
+                .Filter(x => x.SearchVector, Supabase.Postgrest.Constants.Operator.FTS, new FullTextSearchConfig(query, "english"))
                 .Range(offset, offset + number)
                 .Order(sort, ordering)
                 .Get();

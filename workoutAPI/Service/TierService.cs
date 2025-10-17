@@ -82,13 +82,6 @@ public static class TierService
         };
     }
     
-    public static bool ShouldAllowRequest(string tier, int currentUsage, int requestPoints)
-    {
-        tier = tier.ToLower();
-        var limit = GetTierLimit(tier);
-        if(tier == Tiers.FREE && currentUsage >= limit) return false;
-        return true;
-    }
     
     public static bool ShouldBeBilled(string tier, int currentUsage, decimal requestPoints)
     {
@@ -98,7 +91,24 @@ public static class TierService
         return currentUsage + requestPoints > limit;
     }
     
-    public static decimal GetOveragePoints(decimal totalPointsUsed, decimal includedPoints)
+    public static decimal GetRequestOveragePoints(
+        decimal currentTotal,    
+        decimal requestPoints,    
+        string tier
+        )   
+    {
+        var includedPoints = GetTierLimit(tier);
+        // Not over the limit
+        if (currentTotal + requestPoints <= includedPoints) return 0;
+    
+        // Already over, bill all points
+        if (currentTotal >= includedPoints) return requestPoints;
+        
+        // Partial over, bill the overage
+        return (currentTotal + requestPoints) - includedPoints;
+    }
+    // 
+    public static decimal GetTotalOveragePoints(decimal totalPointsUsed, decimal includedPoints)
     {
         return Math.Max(0, totalPointsUsed - includedPoints);
     }

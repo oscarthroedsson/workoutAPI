@@ -8,13 +8,36 @@ namespace workoutAPI.Service
     public class QuotaService
     {
         private readonly IEasyCachingProvider _cache;
+        private readonly Client _supabase;
         private static readonly ConcurrentDictionary<string, SemaphoreSlim> KeyLocks = new();
-
-        public QuotaService(IEasyCachingProviderFactory cacheFactory)
+    
+        public QuotaService(IEasyCachingProviderFactory cacheFactory, Client supabase)
         {
             _cache = cacheFactory.GetCachingProvider("default");
+            _supabase = supabase;
         }
 
+
+        public void IncreaseQuota(string apiKey, string requestPoints, string tier)
+        {
+            
+            
+            var tierLimit = TierService.GetTierLimit(tier);
+            /*
+             In billing Record
+             → Update total_request +1
+             → Update total_points_used with requestPoints
+             → If total_points_used > tierLimit update overage_points with requestPoints 
+             */
+            
+            
+            
+            
+        }
+        
+        public void RollBackTotalQuota(string apiKey, string requestPoints){}
+        
+        
         private SemaphoreSlim GetKeyLock(string key) =>
             KeyLocks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
 
@@ -100,7 +123,7 @@ namespace workoutAPI.Service
                 .Update(); 
         }
 
-        public async Task SetQuotaAsync(string apiKey, decimal quota)  // ✅ decimal parameter
+        public async Task SetQuotaAsync(string apiKey, decimal quota)
         {
             var cacheKey = CacheKey(apiKey);
             await _cache.SetAsync(cacheKey, quota, GetDefaultTtl());
@@ -117,5 +140,7 @@ namespace workoutAPI.Service
             if (ttl > TimeSpan.FromHours(24)) ttl = TimeSpan.FromHours(24);
             return ttl;
         }
+        
+        
     }
 }
